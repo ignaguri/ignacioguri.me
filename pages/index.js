@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import styles from '../styles/index.module.css';
 import * as gtag from '../lib/gtag';
 
 export default class Home extends Component {
@@ -18,20 +17,20 @@ export default class Home extends Component {
         <Head>
           <title>Ignacio Guri's page</title>
         </Head>
-        <main className={styles.main}>
-          <h1 className={styles.title}>
-            <span className={styles.signEmoji}>🚧</span> Page under construction{' '}
-            <span className={styles.signEmoji}>🚧</span>
+        <main className="flex flex-col justify-center items-center py-20 p-0">
+          <h1 className="m-0 text-4xl font-semibold text-center text-black xl:text-6xl">
+            <span className="block text-center xl:inline">🚧</span> Page under construction{' '}
+            <span className="block text-center xl:inline">🚧</span>
           </h1>
 
-          <p className={styles.description}>
+          <p className="text-2xl font-normal text-center text-gray-400 mt-4">
             There will be a very good looking site here
           </p>
         </main>
 
-        <footer className={styles.footer}>
+        <footer className="w-full h-24 flex justify-center items-center border-t border-solid border-gray-300">
           <a
-            className={styles.link}
+            className="flex justify-center items-center text-black no-underline"
             onClick={this.handleGoToGithub}
             href="https://github.com/ignaguri"
             target="_blank"
