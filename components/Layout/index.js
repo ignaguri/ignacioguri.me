@@ -1,5 +1,3 @@
-import styles from "./layout.module.css";
-
 export default function Layout({ children }) {
-  return <div className={styles.container}>{children}</div>;
+  return <div className="container mx-auto min-h-screen	py-0 px-2 flex flex-col justify-center items-center">{children}</div>;
 }
