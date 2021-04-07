@@ -1,19 +1,23 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-const Button = ({ size, type, children }) => {
-  const bSize = `btn-${size}`;
-  const bType = `btn-${type}`;
+const Button = ({ className, size, type, children }) => {
+  const buttonClassnames = classnames('btn', {
+    [`btn-${size}`]: size,
+    [`btn-${type}`]: type,
+    className,
+  });
+
   return (
-    <button type="button" className={classnames('btn', bSize, bType)}>
+    <button type="button" className={buttonClassnames}>
       {children}
     </button>
   );
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['xs', 'xl']),
-  type: PropTypes.oneOf(['primary', 'secondary']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
 };
 
 export default Button;
