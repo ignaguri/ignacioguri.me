@@ -7,4 +7,6 @@
 }
 
 @tailwind components;
+@import '../components/styles.css';
+
 @tailwind utilities;
