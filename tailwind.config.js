@@ -1,7 +1,13 @@
 module.exports = {
   darkMode: false, // or 'media' or 'class'
   plugins: [],
-  purge: ['./pages/**/*.js', './components/**/*.js'],
+  purge: {
+    content: ['./pages/**/*.js', './components/**/*.js'],
+    options: {
+      css: ['./components/**/*.css'],
+      safelist: [/^btn.*/],
+    },
+  },
   theme: {
     extend: {
       outline: {
