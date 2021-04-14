@@ -13,7 +13,7 @@ export default function Home() {
       <Head>
         <title>Ignacio Guri's page</title>
       </Head>
-      <main className="flex flex-col justify-center items-center py-20 p-0">
+      <main className="flex flex-col justify-center items-center py-10 p-0 sm:py-20">
         <Header />
         <Abstract />
         <Skills />
