@@ -5,6 +5,7 @@ export default function Footer() {
     gtag.event({
       action: 'go_to_github',
       category: 'Contact',
+      label: 'Footer',
     });
   };
 
