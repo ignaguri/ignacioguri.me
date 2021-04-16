@@ -2,7 +2,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   plugins: [],
   purge: {
-    content: ['./pages/**/*.js', './components/**/*.js'],
+    content: ['./pages/**/*.js', './components/**/*.js', './sections/**/*.js'],
     options: {
       css: ['./components/**/*.css'],
       safelist: [/^btn.*/],
