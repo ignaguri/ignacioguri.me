@@ -29,7 +29,6 @@ export default function Header() {
           <a
             className="text-current no-underline"
             onClick={() => handleGoTo('linkedIn')}
-            target="_blank"
             rel="noopener noreferrer"
             href="https://www.linkedin.com/in/ignacio-guri/"
           >
@@ -45,7 +44,6 @@ export default function Header() {
           <a
             className="text-current no-underline"
             onClick={() => handleGoTo('github')}
-            target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/ignaguri"
           >

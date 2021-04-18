@@ -15,8 +15,16 @@ module.exports = {
         gray: '1px solid rgba(156, 163, 175, 1)',
       },
     },
+    transitionProperty: {
+      height: 'height',
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['active', 'checked'],
+      inset: ['checked'],
+      opacity: ['disabled'],
+      textColor: ['active'],
+    },
   },
 };
