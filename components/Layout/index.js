@@ -1,6 +1,6 @@
 export default function Layout({ children }) {
   return (
-    <div className="container mx-auto min-h-screen	py-0 px-4 sm:px-2 flex flex-col justify-center items-center">
+    <div className="container min-h-screen flex flex-col justify-center items-center mx-auto py-0 px-2 sm:px-4">
       {children}
     </div>
   );

@@ -9,18 +9,20 @@ import Footer from '../sections/Footer';
 
 export default function Home() {
   return (
-    <Layout>
+    <div>
       <Head>
         <title>Ignacio Guri's page</title>
       </Head>
-      <main className="flex flex-col justify-center items-center py-10 p-0 sm:py-20">
-        <Header />
-        <Abstract />
-        <Skills />
-        <Experience />
-        <Projects />
-      </main>
-      <Footer />
-    </Layout>
+      <Layout>
+        <main className="flex flex-col justify-center items-center py-10 p-0 sm:py-20">
+          <Header />
+          <Abstract />
+          <Skills />
+          <Experience />
+          <Projects />
+        </main>
+        <Footer />
+      </Layout>
+    </div>
   );
 }
