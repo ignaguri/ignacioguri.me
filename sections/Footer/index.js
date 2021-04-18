@@ -15,7 +15,6 @@ export default function Footer() {
         className="flex justify-center items-center text-black no-underline"
         onClick={handleGoToGithub}
         href="https://github.com/ignaguri"
-        target="_blank"
         rel="noopener noreferrer"
       >
         Created with ♥ by @ignaguri
