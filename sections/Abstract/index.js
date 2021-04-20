@@ -1,17 +1,10 @@
 import Accordion from '../../components/Accordion';
-import { screenIs } from '../../lib/tailwindUtils';
 
 export default function Abstract() {
-  const isMobile = screenIs('sm');
-
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-      <Accordion
-        header="About me"
-        headerClassName="text-lg"
-        initOpen={!isMobile}
-      >
-        <h4 className="text-sm text-gray-600 text-left italic mb-2">
+      <Accordion header="About me" headerClassName="text-lg" initOpen>
+        <h4 className="text-sm text-gray-600 text-left italic mx-1 mb-2">
           Currently working as SSr Software Developer @{' '}
           <a
             className="no-underline"
