@@ -19,7 +19,7 @@ export default function Accordion({
     : { height: 0 };
 
   return (
-    <div>
+    <>
       <div
         role="button"
         className={classnames(
@@ -48,7 +48,7 @@ export default function Accordion({
       >
         {children}
       </div>
-    </div>
+    </>
   );
 }
 
