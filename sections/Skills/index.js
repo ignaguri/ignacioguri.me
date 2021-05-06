@@ -1,40 +1,7 @@
 import Image from 'next/image';
 import Accordion from '../../components/Accordion';
-
-const logos = [
-  {
-    alt: 'Javascript Logo',
-    filename: 'javascript',
-  },
-  {
-    alt: 'HTML5 Logo',
-    filename: 'html5',
-  },
-  {
-    alt: 'ReactJS logo',
-    filename: 'react',
-  },
-  {
-    alt: 'NodeJS logo',
-    filename: 'nodejs',
-  },
-  {
-    alt: 'NextJS logo',
-    filename: 'nextjs',
-  },
-  {
-    alt: 'Typescript Logo',
-    filename: 'typescript',
-  },
-  {
-    alt: 'VueJS logo',
-    filename: 'vue',
-  },
-  {
-    alt: 'Swift Logo',
-    filename: 'swift',
-  },
-];
+import { capitalize } from '../../lib/stringUtils';
+import logos from './logos';
 
 export default function Skills() {
   return (
@@ -42,7 +9,11 @@ export default function Skills() {
       <Accordion header="Skills" headerClassName="text-lg" initOpen>
         <div className="flex flex-row flex-wrap justify-around md:min-w-lg lg:min-w-4xl">
           {logos.map(logo => (
-            <div key={logo.filename} className="m-2 transform hover:scale-110">
+            <div
+              key={logo.filename}
+              title={capitalize(logo.filename)}
+              className="m-2 transform hover:scale-125"
+            >
               <Image
                 src={`/logos/${logo.filename}.svg`}
                 alt={logo.alt}
