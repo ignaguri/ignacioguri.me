@@ -1,6 +1,6 @@
 export default function Card({ project }) {
   return (
-    <div className="max-w-xs p-4 bg-white shadow-lg rounded-xl border border-solid border-gray-200 flex flex-col justify-between">
+    <div className="max-w-sm p-4 bg-white shadow-lg rounded-xl border border-solid border-gray-200 flex flex-col justify-between">
       <div>
         <h2 className="text-gray-800 font-medium text-base sm:text-lg">
           {project.name}

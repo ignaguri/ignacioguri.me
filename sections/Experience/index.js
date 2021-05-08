@@ -3,7 +3,7 @@ import Accordion from '../../components/Accordion';
 
 export default function Experience() {
   return (
-    <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
+    <section className="max-w-sm mt-4 md:max-w-lg lg:max-w-4xl">
       <Accordion header="Experience" headerClassName="text-lg" initOpen>
         <ul>
           <li>
@@ -22,7 +22,7 @@ export default function Experience() {
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">
               Positions
             </h3>
-            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 italic">
+            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 italic m-1">
               <li className="list-item">
                 SSr Software Developer | Mar 2020 - Present
               </li>
@@ -34,7 +34,7 @@ export default function Experience() {
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">
               Tasks
             </h3>
-            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800">
+            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 m-1">
               <li className="list-item">Web & Web mobile front-end.</li>
               <li className="list-item">Emails development.</li>
               <li className="list-item">Test automation.</li>
@@ -56,7 +56,7 @@ export default function Experience() {
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">
               Positions
             </h3>
-            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 italic">
+            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 italic m-1">
               <li className="list-item">
                 Engineering Intern | Mar 2016 - Mar 2017
               </li>
@@ -64,7 +64,7 @@ export default function Experience() {
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">
               Tasks
             </h3>
-            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800">
+            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 m-1">
               <li className="list-item">
                 Web-app for parsing & filtering security report logs.
               </li>

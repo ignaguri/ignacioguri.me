@@ -40,7 +40,7 @@ export default function Accordion({
       </div>
       <div
         className={classnames(
-          'overflow-hidden md:overflow-x-hidden transition-height ease duration-300',
+          'overflow-hidden md:overflow-x-hidden transition-height ease duration-300 border-t pt-1',
           bodyClassName
         )}
         ref={ref}
