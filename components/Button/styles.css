@@ -1,0 +1,41 @@
+@layer components {
+  .btn {
+    @apply py-2 px-4 mr-4 font-bold rounded shadow focus:outline-none;
+  }
+
+  .btn-primary {
+    @apply text-white bg-blue-500 hover:bg-blue-700 focus:outline-blue;
+  }
+
+  .btn-secondary {
+    @apply text-gray-700 hover:bg-gray-300 focus:outline-gray border border-gray-300;
+  }
+
+  .btn-tertiary {
+    @apply text-gray-600 hover:bg-gray-100 focus:outline-gray hover:border-gray-100;
+  }
+
+  .btn-small {
+    @apply text-xs sm:text-sm;
+  }
+
+  .btn-medium {
+    @apply text-sm sm:text-base;
+  }
+
+  .btn-large {
+    @apply text-lg sm:text-xl;
+  }
+
+  .btn.with-icon {
+    @apply flex items-center;
+  }
+
+  .btn.with-icon--left > svg {
+    @apply mr-1;
+  }
+
+  .btn.with-icon--right > svg {
+    @apply ml-1;
+  }
+}
