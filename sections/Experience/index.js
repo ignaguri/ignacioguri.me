@@ -7,12 +7,18 @@ export default function Experience() {
       <Accordion header="Experience" headerClassName="text-lg" initOpen>
         <ul>
           <li>
-            <Image
-              src="/logos/meli.svg"
-              alt="Mercado Libre"
-              width={100}
-              height={50}
-            />
+            <div className="flex justify-around items-center md:justify-start">
+              <div className="h-20 lg:h-24 w-32 lg:w-40 relative">
+                <Image
+                  src="/logos/meli.svg"
+                  alt="Mercado Libre"
+                  layout="fill"
+                />
+              </div>
+              <p className="text-base text-gray-900 font-medium m-1 md:ml-12">
+                Mercado Libre
+              </p>
+            </div>
             <p className="text-base text-gray-700 text-left m-1">
               I worked in several products. An app for managing the Mercado Pago
               Credit Card, another one that allows users to buy from Mercado
@@ -42,16 +48,18 @@ export default function Experience() {
               <li className="list-item">Internal dashboard web apps.</li>
             </ul>
           </li>
-          <li className="mt-2">
-            <Image
-              src="/logos/mcafee.svg"
-              alt="McAfee"
-              width={100}
-              height={50}
-            />
-            <p className="text-base text-gray-700 text-left m-1">
-              (formerly Intel Security) Internship - Web front-end development &
-              Testing automation
+          <div className="border my-2 w-3/4 mx-auto" />
+          <li>
+            <div className="flex justify-around items-center md:justify-start">
+              <div className="h-16 lg:h-20 w-32 lg:w-40 relative">
+                <Image src="/logos/intel.svg" alt="Intel" layout="fill" />
+              </div>
+              <p className="text-base text-gray-900 font-medium m-1 md:ml-12">
+                Intel (now McAfee)
+              </p>
+            </div>
+            <p className="text-base text-gray-700 text-left m-1 mt-3">
+              Internship - Web front-end development & Testing automation
             </p>
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">
               Positions

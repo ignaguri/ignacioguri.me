@@ -12,7 +12,7 @@ export default function Card({ project }) {
       <div>
         <div className="border-t-2 my-2" />
         <p className="text-sm lg:text-base text-gray-600">
-          Techs: {project.techs.join(' - ')}
+          <span className="underline">Techs</span>: {project.techs.join(' - ')}
         </p>
         <div className="flex justify-between mt-2 text-sm lg:text-base">
           <a

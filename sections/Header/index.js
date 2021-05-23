@@ -16,8 +16,8 @@ export default function Header() {
   return (
     <div className="flex justify-around items-center">
       <div className="text-left pr-6 sm:pr-10">
-        <h2 className="text-5xl text-black pb-2">Ignacio</h2>
-        <h2 className="text-5xl text-black">Gurí</h2>
+        <h2 className="text-5xl text-black font-semibold pb-2">Ignacio</h2>
+        <h2 className="text-5xl text-black font-semibold">Gurí</h2>
       </div>
       <div className="flex flex-col justify-around items-center sm:flex-row sm:justify-between">
         <Button
