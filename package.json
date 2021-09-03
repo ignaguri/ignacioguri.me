@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
     "start": "next start"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@ijsto/eslint-config": "^4.1.6",
+    "@next/eslint-plugin-next": "^11.1.2",
     "babel-eslint": "^9.0.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
