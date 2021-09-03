@@ -38,10 +38,10 @@ export default class CustomDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <link rel="manifest" href="/site.webmanifest"></link>
+          <link rel="manifest" href="/site.webmanifest" />
 
           {isProduction && (
-            <Fragment>
+            <>
               <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
@@ -59,7 +59,7 @@ export default class CustomDocument extends Document {
                   `,
                 }}
               />
-            </Fragment>
+            </>
           )}
         </Head>
         <body>
