@@ -4,7 +4,7 @@ import * as gtag from '../lib/gtag';
 
 import '../styles/global.css';
 
-const App = ({ Component, pageProps }) => {
+function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -20,6 +20,6 @@ const App = ({ Component, pageProps }) => {
   }, [router.events]);
 
   return <Component {...pageProps} />;
-};
+}
 
 export default App;
