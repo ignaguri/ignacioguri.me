@@ -32,9 +32,9 @@ export default function Accordion({
         {header}
         <span className="float-right">
           {isOpen ? (
-            <ChevronIcon className="transform -rotate-90" />
+            <ChevronIcon className="-rotate-90" />
           ) : (
-            <ChevronIcon className="transform rotate-90" />
+            <ChevronIcon className="rotate-90" />
           )}
         </span>
       </div>
