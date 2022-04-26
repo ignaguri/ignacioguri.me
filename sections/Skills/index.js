@@ -12,7 +12,7 @@ export default function Skills() {
             <li
               key={logo.filename}
               title={capitalize(logo.filename)}
-              className="m-2 transform hover:scale-125"
+              className="m-2 hover:scale-125"
             >
               <Image
                 src={`/logos/${logo.filename}.svg`}

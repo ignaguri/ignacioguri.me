@@ -1,6 +1,8 @@
 /* eslint-disable sort-keys */
 module.exports = {
   plugins: {
+    'postcss-import': {},
+    'tailwindcss/nesting': {},
     tailwindcss: {},
     autoprefixer: {},
   },
