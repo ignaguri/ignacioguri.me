@@ -8,13 +8,13 @@ export default function Experience() {
         <ul className="mt-2">
           <li>
             <div className="flex justify-around items-center md:justify-start">
-              <div className="h-8 w-36 lg:w-40 relative">
-                <Image
-                  src="/logos/doctari_pro.png"
-                  alt="Doctari"
-                  layout="fill"
-                />
-              </div>
+              <Image
+                className="h-8 w-40"
+                src="/logos/doctari_pro.png"
+                alt="Doctari"
+                height={30}
+                width={160}
+              />
               <a
                 className="text-base text-gray-900 font-medium m-1 md:ml-8 lg:ml-16"
                 href="https://www.linkedin.com/company/doctari-group/"
@@ -46,13 +46,13 @@ export default function Experience() {
           <div className="border my-2 w-3/4 mx-auto" />
           <li>
             <div className="flex justify-around items-center md:justify-start">
-              <div className="h-20 lg:h-24 w-32 lg:w-40 relative">
-                <Image
-                  src="/logos/meli.svg"
-                  alt="Mercado Libre"
-                  layout="fill"
-                />
-              </div>
+              <Image
+                className="h-16 lg:h-20 w-32 lg:w-40"
+                src="/logos/meli.svg"
+                alt="Mercado Libre"
+                height={80}
+                width={128}
+              />
               <a
                 className="text-base text-gray-900 font-medium m-1 md:ml-12 lg:ml-16"
                 href="https://www.linkedin.com/company/mercadolibre/"
@@ -93,9 +93,13 @@ export default function Experience() {
           <div className="border my-2 w-3/4 mx-auto" />
           <li>
             <div className="flex justify-around items-center md:justify-start">
-              <div className="h-16 lg:h-20 w-32 lg:w-40 relative">
-                <Image src="/logos/intel.svg" alt="Intel" layout="fill" />
-              </div>
+              <Image
+                className="h-16 lg:h-20 w-32 lg:w-40"
+                src="/logos/intel.svg"
+                alt="Intel"
+                height={64}
+                width={128}
+              />
               <a
                 className="text-base text-gray-900 font-medium m-1 md:ml-12 lg:ml-16"
                 href="https://www.linkedin.com/company/mcafee/"
