@@ -15,6 +15,7 @@ export default function Skills() {
               className="m-2 hover:scale-125"
             >
               <Image
+                className="h-10 w-10"
                 src={`/logos/${logo.filename}.svg`}
                 alt={logo.alt}
                 width={40}
