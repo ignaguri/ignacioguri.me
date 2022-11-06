@@ -1,18 +1,9 @@
-import * as gtag from '../../lib/gtag';
 import Button from '../../components/Button';
 import LinkedInIcon from '../../components/Icons/LinkedIn';
 import GithubIcon from '../../components/Icons/Github';
 import MailIcon from '../../components/Icons/Mail';
 
 export default function Header() {
-  const handleGoTo = site => {
-    gtag.event({
-      action: `go_to_${site}`,
-      category: 'Contact',
-      label: 'Header',
-    });
-  };
-
   return (
     <div className="flex justify-around items-center lg:items-end">
       <div className="pr-6 sm:pr-10">
@@ -30,7 +21,6 @@ export default function Header() {
         >
           <a
             className="text-current no-underline"
-            onClick={() => handleGoTo('linkedIn')}
             rel="noopener noreferrer"
             href="https://www.linkedin.com/in/ignacio-guri/"
           >
@@ -45,7 +35,6 @@ export default function Header() {
         >
           <a
             className="text-current no-underline"
-            onClick={() => handleGoTo('github')}
             rel="noopener noreferrer"
             href="https://github.com/ignaguri"
           >
@@ -60,7 +49,6 @@ export default function Header() {
         >
           <a
             className="text-current no-underline"
-            onClick={() => handleGoTo('mail')}
             rel="noopener noreferrer"
             href="mailto:ignacioguri@gmail.com"
           >
