@@ -1,11 +1,11 @@
-import Head from 'next/head';
-import Layout from '../components/Layout';
-import Header from '../sections/Header';
-import Abstract from '../sections/Abstract';
-import Skills from '../sections/Skills';
-import Experience from '../sections/Experience';
-import Projects from '../sections/Projects';
-import Footer from '../sections/Footer';
+import Head from "next/head";
+import Layout from "../components/Layout";
+import Header from "../sections/Header";
+import Abstract from "../sections/Abstract";
+import Skills from "../sections/Skills";
+import Experience from "../sections/Experience";
+import Projects from "../sections/Projects";
+import Footer from "../sections/Footer";
 
 export default function Home() {
   return (

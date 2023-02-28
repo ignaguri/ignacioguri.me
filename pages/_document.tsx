@@ -1,10 +1,23 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from "next/document";
+
+type CustomDocumentProps = DocumentInitialProps & {
+  isProduction: boolean;
+};
 
 export default class CustomDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<CustomDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx);
 
-    const isProduction = process.env.NODE_ENV === 'production';
+    const isProduction = process.env.NODE_ENV === "production";
 
     return {
       ...initialProps,

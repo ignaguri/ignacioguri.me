@@ -1,14 +1,16 @@
-import Image from 'next/image';
-import Accordion from '../../components/Accordion';
-import { capitalize } from '../../lib/stringUtils';
-import logos from './logos';
+import Image from "next/image";
+import Accordion from "../../components/Accordion";
+import { capitalize } from "../../lib/stringUtils";
+import logos from "./logos";
+
+import type { Logo } from "./logos";
 
 export default function Skills() {
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
       <Accordion header="Skills" headerClassName="text-lg" initOpen>
         <ul className="flex flex-row flex-wrap justify-around md:min-w-lg lg:min-w-4xl">
-          {logos.map(logo => (
+          {logos.map((logo: Logo) => (
             <li
               key={logo.filename}
               title={capitalize(logo.filename)}

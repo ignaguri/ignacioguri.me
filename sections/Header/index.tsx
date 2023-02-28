@@ -1,7 +1,7 @@
-import Button from '../../components/Button';
-import LinkedInIcon from '../../components/Icons/LinkedIn';
-import GithubIcon from '../../components/Icons/Github';
-import MailIcon from '../../components/Icons/Mail';
+import Button from "../../components/Button";
+import LinkedInIcon from "../../components/Icons/LinkedIn";
+import GithubIcon from "../../components/Icons/Github";
+import MailIcon from "../../components/Icons/Mail";
 
 export default function Header() {
   return (
@@ -17,7 +17,7 @@ export default function Header() {
           type="primary"
           size="medium"
           className="my-1 sm:mr-4"
-          iconLeft={<LinkedInIcon classNames="fill-current" />}
+          iconLeft={<LinkedInIcon className="fill-current" />}
         >
           <a
             className="text-current no-underline"

@@ -1,9 +1,8 @@
-/* eslint-disable sort-keys */
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'media',
   plugins: [],
-  content: ['./pages/**/*.js', './components/**/*.js', './sections/**/*.js'],
+  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './sections/**/*.{ts,tsx}'],
   theme: {
     minWidth: {
       xs: '20rem',
