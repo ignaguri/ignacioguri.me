@@ -1,7 +1,8 @@
 import Accordion from "../../components/Accordion";
 import projects from "./projects";
 import Card from "./Card";
-import { Project } from "./projects";
+
+import type { Project } from "./projects";
 
 export default function Projects() {
   return (

@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Accordion from "../../components/Accordion";
 import { capitalize } from "../../lib/stringUtils";
-import logos, { Logo } from "./logos";
+import logos from "./logos";
+
+import type { Logo } from "./logos";
 
 export default function Skills() {
   return (

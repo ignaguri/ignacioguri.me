@@ -1,4 +1,4 @@
-import { Project } from "./projects";
+import type { Project } from "./projects";
 
 export default function Card({
   name,
