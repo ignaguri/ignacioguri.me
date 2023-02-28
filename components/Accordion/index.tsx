@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import classnames from 'classnames';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useRef, useState } from 'react';
 import ChevronIcon from '../Icons/Chevron';
 
@@ -9,8 +10,8 @@ export default function Accordion({
   headerClassName,
   bodyClassName,
   tabIndex,
-  children,
-}) {
+  children
+}: any) {
   const [isOpen, setIsOpen] = useState(initOpen);
   const ref = useRef();
 
@@ -19,7 +20,9 @@ export default function Accordion({
     : { height: 0 };
 
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <div
         role="button"
         className={classnames(
@@ -30,14 +33,20 @@ export default function Accordion({
         tabIndex={tabIndex}
       >
         {header}
+        {/* @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <span className="float-right">
           {isOpen ? (
+            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <ChevronIcon className="-rotate-90" />
           ) : (
+            // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <ChevronIcon className="rotate-90" />
           )}
+        {/* @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </span>
+      {/* @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
+      {/* @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <div
         className={classnames(
           'overflow-hidden md:overflow-x-hidden transition-height ease duration-300 border-t pt-1',
@@ -47,6 +56,7 @@ export default function Accordion({
         style={bodyHeight}
       >
         {children}
+      {/* @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
     </>
   );

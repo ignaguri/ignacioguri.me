@@ -1,8 +1,16 @@
 /* eslint-disable sort-keys */
 import classnames from 'classnames';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'prop... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 
-function Button({ className, size, type, iconLeft, iconRight, children }) {
+function Button({
+  className,
+  size,
+  type,
+  iconLeft,
+  iconRight,
+  children
+}: any) {
   const buttonClassnames = classnames(
     'btn',
     {
@@ -20,6 +28,7 @@ function Button({ className, size, type, iconLeft, iconRight, children }) {
   );
 
   return (
+    // @ts-expect-error TS(2304): Cannot find name 'button'.
     <button type="button" className={buttonClassnames}>
       {iconLeft}
       {children}
