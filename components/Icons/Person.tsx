@@ -1,9 +1,10 @@
-import classnames from 'classnames';
+import classnames from "classnames";
+import { OnlyClassNameProps } from "../../lib/types";
 
-export default function PersonIcon({ className }) {
+export default function PersonIcon({ className }: OnlyClassNameProps) {
   return (
     <svg
-      className={classnames('sm:w-16 sm:h-16 w-10 h-10', className)}
+      className={classnames("sm:w-16 sm:h-16 w-10 h-10", className)}
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"

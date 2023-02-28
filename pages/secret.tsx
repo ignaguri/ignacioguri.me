@@ -1,9 +1,13 @@
-import Head from 'next/head';
-import Layout from '../components/Layout';
-import PersonIcon from '../components/Icons/Person';
-import HeartbeatIcon from '../components/Icons/Heartbeat';
+import Head from "next/head";
+import Layout from "../components/Layout";
+import PersonIcon from "../components/Icons/Person";
+import HeartbeatIcon from "../components/Icons/Heartbeat";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
-export default function ClientInfo({ ips, userAgent }) {
+export default function ClientInfo({
+  ips,
+  userAgent,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
       <Head>
@@ -38,7 +42,7 @@ export default function ClientInfo({ ips, userAgent }) {
                     IP Address
                   </h2>
                   {Object.keys(ips).map(
-                    possibleIp =>
+                    (possibleIp) =>
                       ips[possibleIp] && (
                         <p className="leading-relaxed text-base">
                           {possibleIp}: {ips[possibleIp]}
@@ -55,15 +59,17 @@ export default function ClientInfo({ ips, userAgent }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const userAgent = context.req.headers['user-agent'];
-  let forwarded = context.req.headers['x-forwarded-for'];
-  forwarded = forwarded ? forwarded.split(/, /)[0] : null;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const userAgent = context.req.headers["user-agent"];
+  const forwardedFor = Array.isArray(context.req.headers["x-forwarded-for"])
+    ? context.req.headers["x-forwarded-for"][0]
+    : context.req.headers["x-forwarded-for"];
+  const forwarded = forwardedFor ? forwardedFor : null;
 
-  const realIP = context.req.headers['x-real-ip'] ?? null;
-  const clientIP = context.req.headers['x-client-ip'] ?? null;
+  const realIP = context.req.headers["x-real-ip"] ?? null;
+  const clientIP = context.req.headers["x-client-ip"] ?? null;
 
-  const { remoteAddress } = context.req.connection;
+  const { remoteAddress } = context.req.socket;
 
   const ips = {
     clientIP,
@@ -78,4 +84,4 @@ export async function getServerSideProps(context) {
       userAgent,
     },
   };
-}
+};

@@ -1,10 +1,13 @@
-import classnames from 'classnames';
+import classnames from "classnames";
+import { OnlyClassNameProps } from "../../lib/types";
 
-export default function ExternalLinkIcon({ classNames }) {
+export default function ExternalLinkIcon({
+  className,
+}: OnlyClassNameProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={classnames('h-6 w-6', classNames)}
+      className={classnames("h-6 w-6", className)}
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"

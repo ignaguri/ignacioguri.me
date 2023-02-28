@@ -1,18 +1,24 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import classnames from 'classnames';
-import { useRef, useState } from 'react';
-import ChevronIcon from '../Icons/Chevron';
+import classnames from "classnames";
+import { PropsWithChildren, useRef, useState } from "react";
+import ChevronIcon from "../Icons/Chevron";
 
+interface Props extends PropsWithChildren {
+  initOpen: boolean;
+  header: string;
+  headerClassName?: string;
+  bodyClassName?: string;
+  tabIndex?: number;
+}
 export default function Accordion({
-  initOpen,
+  initOpen = false,
   header,
   headerClassName,
   bodyClassName,
-  tabIndex,
+  tabIndex = 0,
   children,
-}) {
+}: Props) {
   const [isOpen, setIsOpen] = useState(initOpen);
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const bodyHeight = isOpen
     ? { height: ref.current?.scrollHeight }
@@ -23,7 +29,7 @@ export default function Accordion({
       <div
         role="button"
         className={classnames(
-          'flex justify-between items-center focus:outline-none p-3',
+          "flex justify-between items-center focus:outline-none p-3",
           headerClassName
         )}
         onClick={() => setIsOpen(!isOpen)}
@@ -40,7 +46,7 @@ export default function Accordion({
       </div>
       <div
         className={classnames(
-          'overflow-hidden md:overflow-x-hidden transition-height ease duration-300 border-t pt-1',
+          "overflow-hidden md:overflow-x-hidden transition-height ease duration-300 border-t pt-1",
           bodyClassName
         )}
         ref={ref}
@@ -51,8 +57,3 @@ export default function Accordion({
     </>
   );
 }
-
-Accordion.defaultProps = {
-  initOpen: false,
-  tabIndex: 0,
-};
