@@ -1,4 +1,4 @@
-export default [
+export default <Logo[]>[
   {
     alt: 'Javascript Logo',
     filename: 'javascript',
@@ -32,3 +32,8 @@ export default [
     filename: 'swift',
   },
 ];
+
+export type Logo = {
+  alt: string;
+  filename: string;
+};

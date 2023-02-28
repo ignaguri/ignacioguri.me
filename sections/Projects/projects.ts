@@ -1,4 +1,4 @@
-export default [
+export default <Project[]>[
   {
     description: 'This webpage you are viewing right now',
     link: 'https://ignacioguri.me/',
@@ -37,3 +37,11 @@ export default [
     techs: ['p5.js'],
   },
 ];
+
+export type Project = {
+  description: string;
+  link: string;
+  name: string;
+  repo: string;
+  techs: string[];
+};

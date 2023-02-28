@@ -1,10 +1,8 @@
-/* eslint-disable sort-keys */
-
-// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'media',
   plugins: [],
-  content: ['./pages/**/*.js', './components/**/*.js', './sections/**/*.js'],
+  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './sections/**/*.{ts,tsx}'],
   theme: {
     minWidth: {
       xs: '20rem',
