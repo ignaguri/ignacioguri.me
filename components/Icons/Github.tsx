@@ -1,7 +1,7 @@
 import classnames from "classnames";
-import { PropsWithClassName } from "../../lib/types";
+import { OnlyClassNameProps } from "../../lib/types";
 
-export default function GithubIcon({ className }: PropsWithClassName<{}>) {
+export default function GithubIcon({ className }: OnlyClassNameProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,44 +1,84 @@
-const base = require('./eslint-config/base');
-const next = require('./eslint-config/next');
-const node = require('./eslint-config/node');
-const prettier = require('./eslint-config/prettier');
-const react = require('./eslint-config/react');
-const reactHooks = require('./eslint-config/react-hooks');
-
 module.exports = {
   env: {
     browser: true,
-    commonjs: true,
+    es2021: true,
     node: true,
-    'shared-node-browser': true,
   },
-  extends: ['airbnb', 'prettier'],
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    allowImportExportEverywhere: true,
-    babelOptions: {
-      presets: ['next/babel', '@babel/preset-react'],
-    },
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2021,
-    requireConfigFile: false,
-    sourceType: 'module',
-  },
-  plugins: ['node', 'prettier', 'react-hooks'],
-  reportUnusedDisableDirectives: true,
+  plugins: ["@typescript-eslint", "simple-import-sort", "unused-imports"],
+  extends: [
+    "eslint:recommended",
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+  ],
   rules: {
-    ...base,
-    ...next,
-    ...node,
-    ...prettier,
-    ...react,
-    ...reactHooks,
+    "no-console": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/no-unescaped-entities": "off",
+
+    "react/display-name": "off",
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      { props: "never", children: "never" },
+    ],
+
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
+
+    "simple-import-sort/exports": "warn",
+    // 'simple-import-sort/imports': [
+    //   'warn',
+    //   {
+    //     groups: [
+    //       // ext library & side effect imports
+    //       ['^@?\\w', '^\\u0000'],
+    //       // {s}css files
+    //       ['^.+\\.s?css$'],
+    //       // Lib and hooks
+    //       ['^@/lib', '^@/hooks'],
+    //       // static data
+    //       ['^@/data'],
+    //       // components
+    //       ['^@/components', '^@/container'],
+    //       // zustand store
+    //       ['^@/store'],
+    //       // Other imports
+    //       ['^@/'],
+    //       // relative paths up until 3 level
+    //       [
+    //         '^\\./?$',
+    //         '^\\.(?!/?$)',
+    //         '^\\.\\./?$',
+    //         '^\\.\\.(?!/?$)',
+    //         '^\\.\\./\\.\\./?$',
+    //         '^\\.\\./\\.\\.(?!/?$)',
+    //         '^\\.\\./\\.\\./\\.\\./?$',
+    //         '^\\.\\./\\.\\./\\.\\.(?!/?$)',
+    //       ],
+    //       ['^@/types'],
+    //       // other that didnt fit in
+    //       ['^'],
+    //     ],
+    //   },
+    // ],
+    "sort-keys": [
+      "warn",
+      "asc",
+      { caseSensitive: true, natural: false, minKeys: 2 },
+    ],
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
+  globals: {
+    React: true,
+    JSX: true,
   },
 };

@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import PropTypes from "prop-types";
 import { PropsWithChildren, ReactNode } from "react";
 import { PropsWithClassName } from "../../lib/types";
 

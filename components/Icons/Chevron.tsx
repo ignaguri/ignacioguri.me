@@ -1,7 +1,7 @@
 import classnames from "classnames";
-import { PropsWithClassName } from "../../lib/types";
+import { OnlyClassNameProps } from "../../lib/types";
 
-export default function ChevronIcon({ className }: PropsWithClassName<{}>) {
+export default function ChevronIcon({ className }: OnlyClassNameProps) {
   return (
     <svg
       className={classnames("fill-current opacity-75 w-4 h-4", className)}
