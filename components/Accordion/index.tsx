@@ -1,5 +1,5 @@
-import classnames from "classnames";
-import { PropsWithChildren, useRef, useState } from "react";
+import classNames from "classnames";
+import { PropsWithChildren, useState } from "react";
 import ChevronIcon from "../Icons/Chevron";
 
 interface Props extends PropsWithChildren {
@@ -18,18 +18,13 @@ export default function Accordion({
   children,
 }: Props) {
   const [isOpen, setIsOpen] = useState(initOpen);
-  const ref = useRef<HTMLDivElement>(null);
-
-  const bodyHeight = isOpen
-    ? { height: ref.current?.scrollHeight }
-    : { height: 0 };
 
   return (
     <>
       <div
         role="button"
-        className={classnames(
-          "flex justify-between items-center focus:outline-none p-3",
+        className={classNames(
+          "flex justify-between items-center focus:outline-none p-3 text-lg",
           headerClassName
         )}
         onClick={() => setIsOpen(!isOpen)}
@@ -37,20 +32,20 @@ export default function Accordion({
       >
         {header}
         <span className="float-right">
-          {isOpen ? (
-            <ChevronIcon className="-rotate-90" />
-          ) : (
-            <ChevronIcon className="rotate-90" />
-          )}
+          <ChevronIcon
+            className={classNames("transition-transform duration-500 ease", {
+              "-rotate-90": isOpen,
+              "rotate-90": !isOpen,
+            })}
+          />
         </span>
       </div>
       <div
-        className={classnames(
-          "overflow-hidden md:overflow-x-hidden transition-height ease duration-300 border-t pt-1",
+        className={classNames(
+          "overflow-hidden md:overflow-x-hidden transition-max-height duration-500 ease border-t pt-1",
+          { "max-h-0": !isOpen, "max-h-[1024px]": isOpen },
           bodyClassName
         )}
-        ref={ref}
-        style={bodyHeight}
       >
         {children}
       </div>
