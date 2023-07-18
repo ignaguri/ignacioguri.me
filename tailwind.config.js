@@ -17,7 +17,7 @@ module.exports = {
       '6xl': '72rem',
     },
     transitionProperty: {
-      height: 'height',
+      'max-height': 'max-height',
     },
   },
 };

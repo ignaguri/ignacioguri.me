@@ -4,7 +4,7 @@ import Accordion from "../../components/Accordion";
 export default function Experience() {
   return (
     <section className="max-w-sm mt-4 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Experience" headerClassName="text-lg" initOpen>
+      <Accordion header="Experience" initOpen>
         <ul className="mt-2">
           <li>
             <div className="flex justify-around items-center md:justify-start">

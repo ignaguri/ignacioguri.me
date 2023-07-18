@@ -7,7 +7,7 @@ import type { Project } from "./projects";
 export default function Projects() {
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Projects" headerClassName="text-lg" initOpen>
+      <Accordion header="Projects" initOpen>
         <h3 className="text-base text-gray-500 text-left m-1">
           Some side projects I've done
         </h3>
