@@ -44,7 +44,10 @@ export default function ClientInfo({
                   {Object.keys(ips).map(
                     (possibleIp) =>
                       ips[possibleIp] && (
-                        <p className="leading-relaxed text-base">
+                        <p
+                          key={possibleIp}
+                          className="leading-relaxed text-base"
+                        >
                           {possibleIp}: {ips[possibleIp]}
                         </p>
                       )
