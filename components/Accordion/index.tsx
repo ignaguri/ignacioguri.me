@@ -43,7 +43,7 @@ export default function Accordion({
       <div
         className={classNames(
           "overflow-hidden md:overflow-x-hidden transition-max-height duration-500 ease border-t pt-1",
-          { "max-h-0": !isOpen, "max-h-[1024px]": isOpen },
+          { "max-h-0": !isOpen, "max-h-full": isOpen },
           bodyClassName
         )}
       >
