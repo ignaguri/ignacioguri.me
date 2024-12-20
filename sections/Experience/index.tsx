@@ -9,6 +9,44 @@ export default function Experience() {
           <li>
             <div className="flex justify-around items-center md:justify-start">
               <Image
+                className="h-10 w-36"
+                src="/logos/holidu.png"
+                alt="Holidu"
+                height={30}
+                width={160}
+              />
+              <a
+                className="text-base text-gray-900 font-medium m-1 md:ml-8 lg:ml-16"
+                href="https://www.linkedin.com/company/holidu/"
+                rel="noopener noreferrer"
+              >
+                Holidu GmbH
+              </a>
+            </div>
+            <p className="text-base text-gray-700 text-left m-1">
+              Working on a platform for vacation rentals, helping travelers find
+              the perfect accommodation.
+            </p>
+            <h3 className="text-base text-gray-500 text-left m-1 ml-0">
+              Positions
+            </h3>
+            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 italic m-1">
+              <li className="list-item">
+                Senior Frontend Engineer | Apr 2024 - Present
+              </li>
+            </ul>
+            <h3 className="text-base text-gray-500 text-left m-1 ml-0">
+              Tasks
+            </h3>
+            <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 m-1">
+              <li className="list-item">Web front-end development.</li>
+              <li className="list-item">UI/UX improvements.</li>
+            </ul>
+          </li>
+          <div className="border my-2 w-3/4 mx-auto" />
+          <li>
+            <div className="flex justify-around items-center md:justify-start">
+              <Image
                 className="h-8 w-40"
                 src="/logos/doctari_pro.png"
                 alt="Doctari"
@@ -24,7 +62,7 @@ export default function Experience() {
               </a>
             </div>
             <p className="text-base text-gray-700 text-left m-1">
-              Working on a platform for hospitals and clinics, to easily hire
+              Worked on a platform for hospitals and clinics, to easily hire
               doctors and caregivers all throughout Germany.
             </p>
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">
@@ -32,7 +70,7 @@ export default function Experience() {
             </h3>
             <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 italic m-1">
               <li className="list-item">
-                Fullstack TypeScript Developer | Sep 2021 - Present
+                Fullstack TypeScript Developer | Sep 2021 - Mar 2024
               </li>
             </ul>
             <h3 className="text-base text-gray-500 text-left m-1 ml-0">

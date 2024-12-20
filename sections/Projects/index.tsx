@@ -1,6 +1,58 @@
 import Accordion from "@components/Accordion";
 
-export default function Projects() {
+type Project = {
+  description: string | null;
+  link?: string;
+  name: string;
+  repo: string;
+  techs: string[];
+};
+
+export type ProjectsProps = {
+  projects: Project[];
+  error: string | null;
+};
+
+const Card = ({ name, description, techs, repo, link }: Project) => {
+  return (
+    <div className="max-w-sm p-4 bg-white shadow-lg rounded-xl border border-solid border-gray-200 flex flex-col justify-between">
+      <div>
+        <h2 className="text-gray-800 font-medium text-base sm:text-lg">
+          {name}
+        </h2>
+        <p className="mt-2 text-sm lg:text-base text-gray-600 italic">
+          {description}
+        </p>
+      </div>
+      <div>
+        <div className="border-t-2 my-2" />
+        <p className="text-sm lg:text-base text-gray-600">
+          <span className="underline">Techs</span>: {techs.join(" - ")}
+        </p>
+        <div className="flex justify-between mt-2 text-sm lg:text-base">
+          <a href={repo} className="no-underline" rel="noopener noreferrer">
+            Repo
+          </a>
+          {link && (
+            <a href={link} className="no-underline" rel="noopener noreferrer">
+              Link
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function Projects({ projects, error }: ProjectsProps) {
+  if (error) {
+    return (
+      <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
+        <div>Error: {error}</div>
+      </section>
+    );
+  }
+
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
       <Accordion header="Projects" initOpen>
