@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Accordion from "../../components/Accordion";
+import Accordion from "@components/Accordion";
 
 export default function Experience() {
   return (

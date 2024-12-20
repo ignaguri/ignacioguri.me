@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { OnlyClassNameProps } from "../../lib/types";
+import { OnlyClassNameProps } from "@lib/types";
 
 export default function ChevronIcon({ className }: OnlyClassNameProps) {
   return (
