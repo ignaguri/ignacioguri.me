@@ -6,8 +6,7 @@ import Projects from "../sections/Projects";
 
 export const metadata = {
   title: "Ignacio Guri's page",
-  description:
-    "Ignacio Guri's personal website showcasing skills, experience, and projects.",
+  description: "Ignacio Guri's personal webpage",
 };
 
 export default async function Home() {

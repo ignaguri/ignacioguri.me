@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import "@styles/global.css";
 import Footer from "@sections/Footer";
+import ThemeSwitcher from "@components/ThemeSwitcher";
 
 export default function RootLayout({ children }: PropsWithChildren) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -44,16 +45,23 @@ export default function RootLayout({ children }: PropsWithChildren) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function() {
+              const theme = localStorage.getItem('theme');
+              if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+              } else if (theme === 'light') {
+                document.documentElement.classList.remove('dark');
+              }
+            })();`,
+          }}
+        />
       </Head>
       <body className="bg-white dark:bg-gray-900">
         <div className="container min-h-screen flex flex-col justify-center items-center mx-auto py-0 px-2 sm:px-4">
           <header className="w-full flex justify-end p-4">
-            <button
-              onClick={toggleTheme}
-              className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded"
-            >
-              {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            </button>
+            <ThemeSwitcher isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
           </header>
           <main className="flex-grow w-full">{children}</main>
           <Analytics />

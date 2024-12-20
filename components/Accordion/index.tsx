@@ -27,7 +27,8 @@ export default function Accordion({
         role="button"
         className={classNames(
           "flex justify-between items-center focus:outline-none p-3 text-lg",
-          headerClassName
+          headerClassName,
+          "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
         )}
         onClick={() => setIsOpen(!isOpen)}
         tabIndex={tabIndex}
@@ -46,7 +47,8 @@ export default function Accordion({
         className={classNames(
           "overflow-hidden md:overflow-x-hidden transition-all duration-500 ease-in-out border-t pt-1",
           { "h-0": !isOpen, "h-[calc-size(auto,size)]": isOpen },
-          bodyClassName
+          bodyClassName,
+          "bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
         )}
       >
         {children}
