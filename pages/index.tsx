@@ -42,8 +42,8 @@ export const getStaticProps: GetStaticProps = async () => {
     const projects = await fetchGitHubProjects("ignaguri");
     return {
       props: {
-        projects,
         error: null,
+        projects,
       },
       revalidate: 3600, // Revalidate every hour
     };
@@ -52,8 +52,8 @@ export const getStaticProps: GetStaticProps = async () => {
       error instanceof Error ? error.message : "An unknown error occurred";
     return {
       props: {
-        projects: [],
         error: errorMessage,
+        projects: [],
       },
     };
   }

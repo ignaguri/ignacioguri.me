@@ -1,12 +1,5 @@
 import Accordion from "@components/Accordion";
-
-type Project = {
-  description: string | null;
-  link?: string;
-  name: string;
-  repo: string;
-  techs: string[];
-};
+import { Project } from "@lib/types";
 
 export type ProjectsProps = {
   projects: Project[];

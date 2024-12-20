@@ -1,15 +1,22 @@
 import { Octokit } from "octokit";
 import { Endpoints } from "@octokit/types";
+import { Project } from "@lib/types";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_API_TOKEN,
 });
 
-type ListForUserResponse = Endpoints["GET /users/{username}/repos"]["response"]["data"];
-type ListLanguagesResponse = Endpoints["GET /repos/{owner}/{repo}/languages"]["response"]["data"];
-type ListCommitsResponse = Endpoints["GET /repos/{owner}/{repo}/commits"]["response"]["data"];
+type ListForUserResponse =
+  Endpoints["GET /users/{username}/repos"]["response"]["data"];
+type ListLanguagesResponse =
+  Endpoints["GET /repos/{owner}/{repo}/languages"]["response"]["data"];
 
-const cache: { [key: string]: { data: any; expiry: number } } = {};
+interface CacheEntry {
+  data: Project[];
+  expiry: number;
+}
+
+const cache: { [key: string]: CacheEntry } = {};
 const CACHE_DURATION = 1000 * 60 * 60 * 24 * 7; // 1 week
 
 export async function fetchGitHubProjects(username: string) {
@@ -21,10 +28,11 @@ export async function fetchGitHubProjects(username: string) {
   }
 
   try {
-    const { data: repos }: { data: ListForUserResponse } = await octokit.rest.repos.listForUser({
-      username,
-      type: "owner",
-    });
+    const { data: repos }: { data: ListForUserResponse } =
+      await octokit.rest.repos.listForUser({
+        type: "owner",
+        username,
+      });
 
     const projects = await Promise.all(
       repos.map(async (repo) => {
@@ -32,18 +40,20 @@ export async function fetchGitHubProjects(username: string) {
           return [];
         }
 
-        const { data: languagesData }: { data: ListLanguagesResponse } = await octokit.rest.repos.listLanguages({
-          owner: username,
-          repo: repo.name,
-        });
+        const { data: languagesData }: { data: ListLanguagesResponse } =
+          await octokit.rest.repos.listLanguages({
+            owner: username,
+            repo: repo.name,
+          });
         const techs = Object.keys(languagesData);
 
         // Fetch the first page of commits to get the total count
-        const { data: commitsData, headers } = await octokit.rest.repos.listCommits({
-          owner: username,
-          repo: repo.name,
-          per_page: 10,
-        });
+        const { data: commitsData, headers } =
+          await octokit.rest.repos.listCommits({
+            owner: username,
+            per_page: 10,
+            repo: repo.name,
+          });
 
         let commitCount = commitsData.length;
 
@@ -53,9 +63,9 @@ export async function fetchGitHubProjects(username: string) {
             const lastPage = parseInt(lastPageMatch[1], 10);
             const lastPageCommits = await octokit.rest.repos.listCommits({
               owner: username,
-              repo: repo.name,
-              per_page: 10,
               page: lastPage,
+              per_page: 10,
+              repo: repo.name,
             });
             commitCount = (lastPage - 1) * 10 + lastPageCommits.data.length;
           }
@@ -64,8 +74,8 @@ export async function fetchGitHubProjects(username: string) {
         return {
           commitCount,
           description: repo.description,
-          link: repo.homepage,
           id: repo.id,
+          link: repo.homepage ?? null,
           name: repo.name,
           repo: repo.html_url,
           techs,
@@ -73,7 +83,9 @@ export async function fetchGitHubProjects(username: string) {
       })
     );
 
-    const topProjects = projects.flat().sort((a, b) => b.commitCount - a.commitCount);
+    const topProjects = projects
+      .flat()
+      .sort((a, b) => b.commitCount - a.commitCount);
 
     // Cache the result
     cache[cacheKey] = {
@@ -83,7 +95,6 @@ export async function fetchGitHubProjects(username: string) {
 
     return topProjects;
   } catch (error) {
-    console.error(`error in fetchGitHubProjects: ${error}`);
     throw error;
   }
 }
