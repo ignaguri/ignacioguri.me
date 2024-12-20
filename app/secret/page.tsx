@@ -1,12 +1,31 @@
-import Head from "next/head";
-import PersonIcon from "@components/Icons/Person";
-import HeartbeatIcon from "@components/Icons/Heartbeat";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
+import { headers } from 'next/headers';
+import { use } from 'react';
+import Head from 'next/head';
+import PersonIcon from '@components/Icons/Person';
+import HeartbeatIcon from '@components/Icons/Heartbeat';
 
-export default function ClientInfo({
-  ips,
-  userAgent,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+async function getClientInfo() {
+  const headersList = await headers();
+  const userAgent = headersList.get('user-agent');
+  const forwardedFor = headersList.get('x-forwarded-for');
+  const forwarded = forwardedFor ? forwardedFor.split(',')[0] : null;
+  const realIP = headersList.get('x-real-ip');
+  const clientIP = headersList.get('x-client-ip');
+  const remoteAddress = headersList.get('remote-address');
+
+  const ips = {
+    clientIP,
+    forwarded,
+    realIP,
+    remoteAddress,
+  };
+
+  return { ips, userAgent };
+}
+
+export default function ClientInfo() {
+  const { ips, userAgent } = use(getClientInfo());
+
   return (
     <div>
       <Head>
@@ -42,12 +61,12 @@ export default function ClientInfo({
                   </h2>
                   {Object.keys(ips).map(
                     (possibleIp) =>
-                      ips[possibleIp] && (
+                      ips[possibleIp as keyof typeof ips] && (
                         <p
                           key={possibleIp}
                           className="leading-relaxed text-base"
                         >
-                          {possibleIp}: {ips[possibleIp]}
+                          {possibleIp}: {ips[possibleIp as keyof typeof ips]}
                         </p>
                       )
                   )}
@@ -60,30 +79,3 @@ export default function ClientInfo({
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const userAgent = context.req.headers["user-agent"];
-  const forwardedFor = Array.isArray(context.req.headers["x-forwarded-for"])
-    ? context.req.headers["x-forwarded-for"][0]
-    : context.req.headers["x-forwarded-for"];
-  const forwarded = forwardedFor ? forwardedFor : null;
-
-  const realIP = context.req.headers["x-real-ip"] ?? null;
-  const clientIP = context.req.headers["x-client-ip"] ?? null;
-
-  const { remoteAddress } = context.req.socket;
-
-  const ips = {
-    clientIP,
-    forwarded,
-    realIP,
-    remoteAddress,
-  };
-
-  return {
-    props: {
-      ips,
-      userAgent,
-    },
-  };
-};
