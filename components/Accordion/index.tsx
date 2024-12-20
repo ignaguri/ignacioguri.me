@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames";
 import { PropsWithChildren, useState } from "react";
 import ChevronIcon from "../Icons/Chevron";
@@ -33,7 +35,7 @@ export default function Accordion({
         {header}
         <span className="float-right">
           <ChevronIcon
-            className={classNames("transition-transform duration-500 ease", {
+            className={classNames("transition-all duration-300 ease-in-out", {
               "-rotate-90": isOpen,
               "rotate-90": !isOpen,
             })}
@@ -42,8 +44,8 @@ export default function Accordion({
       </div>
       <div
         className={classNames(
-          "overflow-hidden md:overflow-x-hidden transition-max-height duration-500 ease border-t pt-1",
-          { "max-h-0": !isOpen, "max-h-full": isOpen },
+          "overflow-hidden md:overflow-x-hidden transition-all duration-500 ease-in-out border-t pt-1",
+          { "h-0": !isOpen, "h-[calc-size(auto,size)]": isOpen },
           bodyClassName
         )}
       >

@@ -1,10 +1,6 @@
 import Accordion from "@components/Accordion";
+import { fetchGitHubProjects } from "@lib/github";
 import { Project } from "@lib/types";
-
-export type ProjectsProps = {
-  projects: Project[];
-  error: string | null;
-};
 
 const Card = ({ name, description, techs, repo, link }: Project) => {
   return (
@@ -37,7 +33,16 @@ const Card = ({ name, description, techs, repo, link }: Project) => {
   );
 };
 
-export default function Projects({ projects, error }: ProjectsProps) {
+export default async function Projects() {
+  let projects: Project[] = [];
+  let error: string | null = null;
+
+  try {
+    projects = await fetchGitHubProjects("ignaguri");
+  } catch (err) {
+    error = err instanceof Error ? err.message : "An unknown error occurred";
+  }
+
   if (error) {
     return (
       <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">

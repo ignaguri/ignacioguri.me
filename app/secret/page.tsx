@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
-import PersonIcon from "../components/Icons/Person";
-import HeartbeatIcon from "../components/Icons/Heartbeat";
+import PersonIcon from "@components/Icons/Person";
+import HeartbeatIcon from "@components/Icons/Heartbeat";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next/types";
 
 export default function ClientInfo({
@@ -13,7 +12,7 @@ export default function ClientInfo({
       <Head>
         <title>Client info page</title>
       </Head>
-      <Layout>
+      <>
         <main className="flex flex-col justify-center items-center py-10 px-10 sm:py-20">
           <section className="text-gray-600 body-font">
             <div className="flex flex-col text-center w-full mb-8">
@@ -57,7 +56,7 @@ export default function ClientInfo({
             </div>
           </section>
         </main>
-      </Layout>
+      </>
     </div>
   );
 }
