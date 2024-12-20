@@ -19,7 +19,7 @@ interface CacheEntry {
 const cache: { [key: string]: CacheEntry } = {};
 const CACHE_DURATION = 1000 * 60 * 60 * 24 * 7; // 1 week
 
-export async function fetchGitHubProjects(username: string) {
+export async function fetchGitHubProjects(username: string): Promise<Project[]> {
   const cacheKey = `github_projects_${username}`;
   const now = Date.now();
 
@@ -36,7 +36,7 @@ export async function fetchGitHubProjects(username: string) {
   const projects = await Promise.all(
     repos.map(async (repo) => {
       if (repo.fork || repo.archived || repo.private) {
-        return [];
+        return null;
       }
 
       const { data: languagesData }: { data: ListLanguagesResponse } =
@@ -83,7 +83,7 @@ export async function fetchGitHubProjects(username: string) {
   );
 
   const topProjects = projects
-    .flat()
+    .filter((project): project is Project => project !== null)
     .sort((a, b) => b.commitCount - a.commitCount);
 
   // Cache the result

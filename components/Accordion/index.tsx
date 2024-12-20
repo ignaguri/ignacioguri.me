@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames";
 import { PropsWithChildren, useState } from "react";
 import ChevronIcon from "../Icons/Chevron";
@@ -25,7 +27,8 @@ export default function Accordion({
         role="button"
         className={classNames(
           "flex justify-between items-center focus:outline-none p-3 text-lg",
-          headerClassName
+          headerClassName,
+          "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
         )}
         onClick={() => setIsOpen(!isOpen)}
         tabIndex={tabIndex}
@@ -33,7 +36,7 @@ export default function Accordion({
         {header}
         <span className="float-right">
           <ChevronIcon
-            className={classNames("transition-transform duration-500 ease", {
+            className={classNames("transition-all duration-300 ease-in-out", {
               "-rotate-90": isOpen,
               "rotate-90": !isOpen,
             })}
@@ -42,9 +45,10 @@ export default function Accordion({
       </div>
       <div
         className={classNames(
-          "overflow-hidden md:overflow-x-hidden transition-max-height duration-500 ease border-t pt-1",
-          { "max-h-0": !isOpen, "max-h-full": isOpen },
-          bodyClassName
+          "overflow-hidden md:overflow-x-hidden transition-all duration-500 ease-in-out border-t pt-1",
+          { "h-0": !isOpen, "h-[calc-size(auto,size)]": isOpen },
+          bodyClassName,
+          "bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
         )}
       >
         {children}
