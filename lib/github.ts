@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
-import { Endpoints } from "@octokit/types";
-import { Project } from "@lib/types";
+
+import type { Project } from "@lib/types";
+import type { Endpoints } from "@octokit/types";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_API_TOKEN,
@@ -19,7 +20,9 @@ interface CacheEntry {
 const cache: { [key: string]: CacheEntry } = {};
 const CACHE_DURATION = 1000 * 60 * 60 * 24 * 7; // 1 week
 
-export async function fetchGitHubProjects(username: string): Promise<Project[]> {
+export async function fetchGitHubProjects(
+  username: string,
+): Promise<Project[]> {
   const cacheKey = `github_projects_${username}`;
   const now = Date.now();
 
@@ -79,7 +82,7 @@ export async function fetchGitHubProjects(username: string): Promise<Project[]> 
         repo: repo.html_url,
         techs,
       };
-    })
+    }),
   );
 
   const topProjects = projects

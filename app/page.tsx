@@ -1,8 +1,8 @@
-import Header from "../sections/Header";
 import Abstract from "../sections/Abstract";
-import Skills from "../sections/Skills";
 import Experience from "../sections/Experience";
+import Header from "../sections/Header";
 import Projects from "../sections/Projects";
+import Skills from "../sections/Skills";
 
 export const metadata = {
   title: "Ignacio Guri's page",
