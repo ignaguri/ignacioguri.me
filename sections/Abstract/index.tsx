@@ -24,7 +24,8 @@ export default function Abstract() {
           web, and NodeJS + Firebase/AWS for the backend.
         </p>
         <p className="text-base text-gray-700 dark:text-gray-300 text-left m-1">
-          I'm always keen to learn and try new techs, frameworks & languages.
+          I&apos;m always keen to learn and try new techs, frameworks &
+          languages.
         </p>
       </Accordion>
     </section>

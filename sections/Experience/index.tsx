@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Accordion from "@components/Accordion";
+import Image from "next/image";
 
 export default function Experience() {
   return (
@@ -121,9 +121,7 @@ export default function Experience() {
               Tasks
             </h3>
             <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 dark:text-gray-200 m-1">
-              <li className="list-item">
-                Web & Web mobile front-end.
-              </li>
+              <li className="list-item">Web & Web mobile front-end.</li>
               <li className="list-item">Emails development.</li>
               <li className="list-item">Test automation.</li>
               <li className="list-item">iOS app.</li>
@@ -168,7 +166,8 @@ export default function Experience() {
               </li>
               <li className="list-item">Tests automation with Selenium.</li>
               <li className="list-item">
-                Set up a pipeline of tools for user's feedback & bug reporting.
+                Set up a pipeline of tools for user&apos;s feedback & bug
+                reporting.
               </li>
             </ul>
           </li>

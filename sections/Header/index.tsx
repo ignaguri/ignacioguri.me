@@ -1,6 +1,6 @@
 import Button from "@components/Button";
-import LinkedInIcon from "@components/Icons/LinkedIn";
 import GithubIcon from "@components/Icons/Github";
+import LinkedInIcon from "@components/Icons/LinkedIn";
 import MailIcon from "@components/Icons/Mail";
 
 export default function Header() {

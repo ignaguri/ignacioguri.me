@@ -1,7 +1,7 @@
-/* eslint-disable sort-keys */
 import classnames from "classnames";
-import { PropsWithChildren, ReactNode } from "react";
-import { PropsWithClassName } from "@lib/types";
+
+import type { PropsWithClassName } from "@lib/types";
+import type { PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   size: "small" | "medium" | "large";
@@ -31,7 +31,7 @@ export default function Button({
       "with-icon--left": iconLeft,
       "with-icon--right": iconRight,
     },
-    className
+    className,
   );
 
   return (

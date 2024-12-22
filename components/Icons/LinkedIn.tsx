@@ -1,5 +1,6 @@
 import classnames from "classnames";
-import { OnlyClassNameProps } from "@lib/types";
+
+import type { OnlyClassNameProps } from "@lib/types";
 
 export default function LinkedInIcon({ className }: OnlyClassNameProps) {
   return (

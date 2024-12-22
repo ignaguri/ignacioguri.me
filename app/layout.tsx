@@ -1,12 +1,14 @@
 "use client";
 
-import { PropsWithChildren, useEffect, useState } from "react";
-import Head from "next/head";
+import ThemeSwitcher from "@components/ThemeSwitcher";
+import Footer from "@sections/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+
+import type { PropsWithChildren } from "react";
 
 import "@styles/global.css";
-import Footer from "@sections/Footer";
-import ThemeSwitcher from "@components/ThemeSwitcher";
 
 export default function RootLayout({ children }: PropsWithChildren) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -38,10 +40,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <Head>
-        <title>Ignacio Guri's page</title>
+        <title>Ignacio Gurí&apos;s page</title>
         <meta
           name="description"
-          content="This is Ignacio Guri's personal webpage"
+          content="This is Ignacio Gurí's personal webpage"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
