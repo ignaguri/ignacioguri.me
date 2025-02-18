@@ -31,7 +31,7 @@ export default function Header() {
           type="secondary"
           size="medium"
           className="my-1 sm:mr-4"
-          iconLeft={<GithubIcon />}
+          iconLeft={<GithubIcon className="fill-current" />}
         >
           <a
             className="text-gray-700 dark:text-gray-300 no-underline"
