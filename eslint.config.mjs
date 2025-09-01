@@ -1,42 +1,30 @@
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import typescriptParser from "@typescript-eslint/parser";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import js from "@eslint/js";
 import prettierConfigRecommended from "eslint-plugin-prettier/recommended";
-import nextPlugin from "@next/eslint-plugin-next";
+import { FlatCompat } from "@eslint/eslintrc";
+import { fixupConfigRules } from "@eslint/compat";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
-const config = [
-  // Base recommended config
-  js.configs.recommended,
-
-  // Next.js configuration
+const patchedConfig = fixupConfigRules([
   ...compat.extends("next/core-web-vitals"),
+]);
 
-  // Ensure Next.js plugin is properly detected
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    plugins: {
-      "@next/next": nextPlugin,
-    },
-  },
-
-  // TypeScript files configuration
+const config = [
   {
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
-      parser: typescriptParser,
+      parser: "@typescript-eslint/parser",
       parserOptions: {
         project: "./tsconfig.json",
       },
@@ -67,6 +55,7 @@ const config = [
         {
           groups: [
             ["builtin", "external", "internal", "index", "object"],
+
             ["type"], // All type imports go after other imports
           ],
           "newlines-between": "always", // Add a new line between groups
@@ -89,22 +78,9 @@ const config = [
       "simple-import-sort/exports": "warn",
     },
   },
-
-  // Prettier configuration
+  ...patchedConfig,
   prettierConfigRecommended,
-
-  // Ignore patterns
-  {
-    ignores: [
-      ".next/*",
-      "node_modules/*",
-      "out/*",
-      "build/*",
-      "dist/*",
-      "*.config.js",
-      "*.config.mjs",
-    ],
-  },
+  { ignores: [".next/*"] },
 ];
 
 export default config;
