@@ -65,7 +65,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <header className="w-full flex justify-end p-4">
             <ThemeSwitcher isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
           </header>
-          <main className="flex-grow w-full">{children}</main>
+          <main className="grow w-full">{children}</main>
           <Analytics />
         </div>
         <Footer />

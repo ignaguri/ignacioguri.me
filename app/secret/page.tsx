@@ -41,10 +41,10 @@ export default function ClientInfo() {
             </div>
             <div className="container px-5 py-2 mx-auto">
               <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 shrink-0">
                   <PersonIcon />
                 </div>
-                <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                <div className="grow sm:text-left text-center mt-6 sm:mt-0">
                   <h2 className="text-gray-900 dark:text-gray-200 text-lg title-font font-medium mb-2">
                     User agent
                   </h2>
@@ -52,10 +52,10 @@ export default function ClientInfo() {
                 </div>
               </div>
               <div className="flex items-center lg:w-3/5 mx-auto pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 shrink-0">
                   <HeartbeatIcon />
                 </div>
-                <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                <div className="grow sm:text-left text-center mt-6 sm:mt-0">
                   <h2 className="text-gray-900 dark:text-gray-200 text-lg title-font font-medium mb-2">
                     IP Address
                   </h2>

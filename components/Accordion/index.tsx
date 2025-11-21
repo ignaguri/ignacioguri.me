@@ -29,7 +29,7 @@ export default function Accordion({
       <div
         role="button"
         className={classNames(
-          "flex justify-between items-center focus:outline-none p-3 text-lg",
+          "flex justify-between items-center focus:outline-hidden p-3 text-lg",
           headerClassName,
           "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100",
         )}

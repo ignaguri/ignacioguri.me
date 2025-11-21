@@ -1,41 +1,57 @@
-@layer components {
-  .btn {
-    @apply py-2 px-4 mr-4 font-bold rounded shadow focus:outline-none;
-  }
+@utility btn {
+  @apply py-2 px-4 mr-4 font-bold rounded-sm shadow-sm focus:outline-hidden;
 
-  .btn-primary {
-    @apply text-white bg-blue-500 hover:bg-blue-700 focus:outline-blue dark:bg-blue-700 dark:hover:bg-blue-900;
-  }
-
-  .btn-secondary {
-    @apply text-gray-700 hover:bg-gray-300 focus:outline-gray border border-gray-300 dark:text-gray-300 dark:hover:bg-gray-500 dark:border-gray-500;
-  }
-
-  .btn-tertiary {
-    @apply text-gray-600 hover:bg-gray-100 focus:outline-gray hover:border-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:border-gray-700;
-  }
-
-  .btn-small {
-    @apply text-xs sm:text-sm;
-  }
-
-  .btn-medium {
-    @apply text-sm sm:text-base;
-  }
-
-  .btn-large {
-    @apply text-lg sm:text-xl;
-  }
-
-  .btn.with-icon {
+  &.with-icon {
     @apply flex items-center;
   }
 
-  .btn.with-icon--left > svg {
+  &.with-icon--left > svg {
     @apply mr-1;
   }
 
-  .btn.with-icon--right > svg {
+  &.with-icon--right > svg {
+    @apply ml-1;
+  }
+}
+
+@utility btn-primary {
+  @apply text-white bg-blue-500 hover:bg-blue-700 focus:outline-blue dark:bg-blue-700 dark:hover:bg-blue-900;
+}
+
+@utility btn-secondary {
+  @apply text-gray-700 hover:bg-gray-300 focus:outline-gray border border-gray-300 dark:text-gray-300 dark:hover:bg-gray-500 dark:border-gray-500;
+}
+
+@utility btn-tertiary {
+  @apply text-gray-600 hover:bg-gray-100 focus:outline-gray hover:border-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:border-gray-700;
+}
+
+@utility btn-small {
+  @apply text-xs sm:text-sm;
+}
+
+@utility btn-medium {
+  @apply text-sm sm:text-base;
+}
+
+@utility btn-large {
+  @apply text-lg sm:text-xl;
+}
+
+@utility with-icon {
+  &.btn {
+    @apply flex items-center;
+  }
+}
+
+@utility with-icon--left {
+  &.btn > svg {
+    @apply mr-1;
+  }
+}
+
+@utility with-icon--right {
+  &.btn > svg {
     @apply ml-1;
   }
 }
