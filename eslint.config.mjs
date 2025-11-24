@@ -1,36 +1,14 @@
 import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
+import importPlugin from "eslint-plugin-import";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
 import prettierConfigRecommended from "eslint-plugin-prettier/recommended";
-import nextPlugin from "@next/eslint-plugin-next";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
-
-const config = [
-  // Base recommended config
+export default [
+  // Base recommended configs
   js.configs.recommended,
-
-  // Next.js configuration
-  ...compat.extends("next/core-web-vitals"),
-
-  // Ensure Next.js plugin is properly detected
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    plugins: {
-      "@next/next": nextPlugin,
-    },
-  },
 
   // TypeScript files configuration
   {
@@ -43,24 +21,27 @@ const config = [
       globals: {
         React: true,
         JSX: true,
+        // Browser globals
+        window: true,
+        document: true,
+        localStorage: true,
+        // Node.js globals
+        process: true,
+        global: true,
+        Buffer: true,
+        __dirname: true,
+        __filename: true,
       },
     },
     plugins: {
       "@typescript-eslint": typescriptEslint,
+      "import": importPlugin,
       "simple-import-sort": simpleImportSort,
       "unused-imports": unusedImports,
     },
     rules: {
       "no-console": "warn",
       "@typescript-eslint/explicit-module-boundary-types": "off",
-      "react/display-name": "off",
-      "react/jsx-curly-brace-presence": [
-        "warn",
-        {
-          props: "never",
-          children: "never",
-        },
-      ],
       "@typescript-eslint/consistent-type-imports": "error",
       "import/order": [
         "error",
@@ -106,5 +87,3 @@ const config = [
     ],
   },
 ];
-
-export default config;

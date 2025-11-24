@@ -1,24 +1,52 @@
-@import "tailwindcss/base";
+@import 'tailwindcss';
+@import '../components/styles.css';
 
-@import "tailwindcss/components";
-@import "../components/styles.css";
+@custom-variant dark (&:is(.dark *));
 
-@import "tailwindcss/utilities";
+@theme {
+  --min-width-*: initial;
+  --min-width-xs: 20rem;
+  --min-width-sm: 24rem;
+  --min-width-md: 28rem;
+  --min-width-lg: 32rem;
+  --min-width-xl: 36rem;
+  --min-width-2xl: 42rem;
+  --min-width-3xl: 48rem;
+  --min-width-4xl: 56rem;
+  --min-width-5xl: 64rem;
+  --min-width-6xl: 72rem;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility outline-blue {
+  outline: 1px solid rgba(30, 64, 175, 1);
+  outline-offset: 2px;
+}
+
+@utility outline-gray {
+  outline: 1px solid rgba(156, 163, 175, 1);
+  outline-offset: 2px;
+}
 
 @layer base {
   a {
     @apply text-blue-600 underline dark:text-blue-400;
-  }
-}
-
-@layer utilities {
-  .outline-blue {
-    outline: 1px solid rgba(30, 64, 175, 1);
-    outline-offset: 2px;
-  }
-
-  .outline-gray {
-    outline: 1px solid rgba(156, 163, 175, 1);
-    outline-offset: 2px;
   }
 }
