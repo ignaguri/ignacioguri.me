@@ -84,6 +84,7 @@ export default [
       "dist/*",
       "*.config.js",
       "*.config.mjs",
+      "*.config.ts",
     ],
   },
 ];

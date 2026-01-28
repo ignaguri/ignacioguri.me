@@ -24,6 +24,7 @@ const Card = ({ name, description, techs, repo, link }: Project) => {
             href={repo}
             className="no-underline dark:text-blue-400"
             rel="noopener noreferrer"
+            aria-label={`View ${name} repository`}
           >
             Repo
           </a>
@@ -32,6 +33,7 @@ const Card = ({ name, description, techs, repo, link }: Project) => {
               href={link}
               className="no-underline dark:text-blue-400"
               rel="noopener noreferrer"
+              aria-label={`Visit ${name} live site`}
             >
               Link
             </a>
