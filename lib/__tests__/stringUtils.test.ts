@@ -18,4 +18,8 @@ describe("capitalize", () => {
   it("handles single character strings", () => {
     expect(capitalize("a")).toBe("A");
   });
+
+  it("returns an empty string for empty input", () => {
+    expect(capitalize("")).toBe("");
+  });
 });

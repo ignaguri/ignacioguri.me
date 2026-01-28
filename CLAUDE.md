@@ -49,4 +49,6 @@ npm run build      # Production build
 npm start          # Production server
 npm run lint       # ESLint check
 npm run lint:fix   # ESLint autofix
+npm test           # Run tests
+npm run test:watch # Run tests in watch mode
 ```
