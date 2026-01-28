@@ -1,5 +1,5 @@
 @utility btn {
-  @apply py-2 px-4 mr-4 font-bold rounded-sm shadow-sm focus:outline-hidden;
+  @apply py-2 px-4 mr-4 font-bold rounded-sm shadow-sm;
 
   &.with-icon {
     @apply flex items-center;
