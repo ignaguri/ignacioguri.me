@@ -1,3 +1,4 @@
+import { cacheLife, cacheTag } from "next/cache";
 import { Octokit } from "octokit";
 
 import type { Project } from "@lib/types";
@@ -12,23 +13,12 @@ type ListForUserResponse =
 type ListLanguagesResponse =
   Endpoints["GET /repos/{owner}/{repo}/languages"]["response"]["data"];
 
-interface CacheEntry {
-  data: Project[];
-  expiry: number;
-}
-
-const cache: { [key: string]: CacheEntry } = {};
-const CACHE_DURATION = 1000 * 60 * 60 * 24 * 7; // 1 week
-
 export async function fetchGitHubProjects(
   username: string,
 ): Promise<Project[]> {
-  const cacheKey = `github_projects_${username}`;
-  const now = Date.now();
-
-  if (cache[cacheKey] && cache[cacheKey].expiry > now) {
-    return cache[cacheKey].data;
-  }
+  "use cache";
+  cacheLife({ revalidate: 604800 }); // 7 days
+  cacheTag("github-projects");
 
   const { data: repos }: { data: ListForUserResponse } =
     await octokit.rest.repos.listForUser({
@@ -85,15 +75,7 @@ export async function fetchGitHubProjects(
     }),
   );
 
-  const topProjects = projects
+  return projects
     .filter((project): project is Project => project !== null)
     .sort((a, b) => b.commitCount - a.commitCount);
-
-  // Cache the result
-  cache[cacheKey] = {
-    data: topProjects,
-    expiry: now + CACHE_DURATION,
-  };
-
-  return topProjects;
 }

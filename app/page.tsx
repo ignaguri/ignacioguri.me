@@ -1,7 +1,10 @@
+import { Suspense } from "react";
+
 import Abstract from "../sections/Abstract";
 import Experience from "../sections/Experience";
 import Header from "../sections/Header";
 import Projects from "../sections/Projects";
+import ProjectsSkeleton from "../sections/Projects/Skeleton";
 import Skills from "../sections/Skills";
 
 export default async function Home() {
@@ -11,7 +14,9 @@ export default async function Home() {
       <Abstract />
       <Skills />
       <Experience />
-      <Projects />
+      <Suspense fallback={<ProjectsSkeleton />}>
+        <Projects />
+      </Suspense>
     </div>
   );
 }
