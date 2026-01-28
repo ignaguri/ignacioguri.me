@@ -1,9 +1,17 @@
-import { NextResponse } from "next/server";
+import { cacheLife } from "next/cache";
 
-export async function GET() {
-  return NextResponse.json({
+async function getData() {
+  "use cache";
+  cacheLife("max");
+
+  return {
     i: "love you",
     wont: "you tell",
     me: "your name?",
-  });
+  };
+}
+
+export async function GET() {
+  const data = await getData();
+  return Response.json(data);
 }
