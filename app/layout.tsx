@@ -11,28 +11,28 @@ import "@styles/global.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ignacioguri.me"),
   title: {
-    default: "Ignacio Guri's page",
-    template: "%s | Ignacio Guri",
+    default: "Ignacio Gurí's page",
+    template: "%s | Ignacio Gurí",
   },
-  description: "This is Ignacio Guri's personal webpage",
-  authors: [{ name: "Ignacio Guri" }],
+  description: "This is Ignacio Gurí's personal webpage",
+  authors: [{ name: "Ignacio Gurí" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Ignacio Guri's page",
-    description: "This is Ignacio Guri's personal webpage",
+    title: "Ignacio Gurí's page",
+    description: "This is Ignacio Gurí's personal webpage",
     url: "https://ignacioguri.me",
-    siteName: "Ignacio Guri",
+    siteName: "Ignacio Gurí",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary",
-    title: "Ignacio Guri's page",
-    description: "This is Ignacio Guri's personal webpage",
+    title: "Ignacio Gurí's page",
+    description: "This is Ignacio Gurí's personal webpage",
   },
 };
 
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Ignacio Guri",
+              name: "Ignacio Gurí",
               url: "https://ignacioguri.me",
               jobTitle: "Senior Frontend Engineer",
               sameAs: [
