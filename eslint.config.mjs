@@ -1,7 +1,7 @@
 import js from "@eslint/js";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
-import importPlugin from "eslint-plugin-import";
+import importPlugin from "eslint-plugin-import-x";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
 import prettierConfigRecommended from "eslint-plugin-prettier/recommended";
@@ -35,7 +35,7 @@ export default [
     },
     plugins: {
       "@typescript-eslint": typescriptEslint,
-      "import": importPlugin,
+      "import-x": importPlugin,
       "simple-import-sort": simpleImportSort,
       "unused-imports": unusedImports,
     },
@@ -43,7 +43,7 @@ export default [
       "no-console": "warn",
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/consistent-type-imports": "error",
-      "import/order": [
+      "import-x/order": [
         "error",
         {
           groups: [
