@@ -8,13 +8,16 @@ import type { PropsWithChildren } from "react";
 
 import "@styles/global.css";
 
+const description =
+  "Ignacio Gurí — Senior Frontend Engineer specializing in React, TypeScript, and Node.js. View my experience, skills, and open-source projects.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://ignacioguri.me"),
   title: {
-    default: "Ignacio Gurí's page",
+    default: "Ignacio Gurí — Senior Frontend Engineer",
     template: "%s | Ignacio Gurí",
   },
-  description: "This is Ignacio Gurí's personal webpage",
+  description,
   authors: [{ name: "Ignacio Gurí" }],
   icons: {
     icon: "/favicon.ico",
@@ -22,17 +25,17 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Ignacio Gurí's page",
-    description: "This is Ignacio Gurí's personal webpage",
+    title: "Ignacio Gurí — Senior Frontend Engineer",
+    description,
     url: "https://ignacioguri.me",
     siteName: "Ignacio Gurí",
     type: "website",
     locale: "en_US",
   },
   twitter: {
-    card: "summary",
-    title: "Ignacio Gurí's page",
-    description: "This is Ignacio Gurí's personal webpage",
+    card: "summary_large_image",
+    title: "Ignacio Gurí — Senior Frontend Engineer",
+    description,
   },
 };
 
@@ -69,6 +72,21 @@ export default function RootLayout({ children }: PropsWithChildren) {
               name: "Ignacio Gurí",
               url: "https://ignacioguri.me",
               jobTitle: "Senior Frontend Engineer",
+              description:
+                "Senior Frontend Engineer specializing in React, TypeScript, and Node.js.",
+              knowsAbout: [
+                "React",
+                "TypeScript",
+                "JavaScript",
+                "Node.js",
+                "Next.js",
+                "Vue.js",
+                "HTML",
+                "CSS",
+                "Swift",
+                "Firebase",
+                "AWS",
+              ],
               sameAs: ["https://www.linkedin.com/in/ignacio-guri/", "https://github.com/ignaguri"],
             }),
           }}
