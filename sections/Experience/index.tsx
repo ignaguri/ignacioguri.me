@@ -77,7 +77,7 @@ export default function Experience() {
 
   return (
     <section className="max-w-sm mt-4 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Experience" initOpen>
+      <Accordion header="Experience" headingLevel="h2" initOpen>
         <div className="mt-6 space-y-8">
           {experiences.map((exp, index) => (
             <div key={exp.id} className="relative">

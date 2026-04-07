@@ -9,7 +9,7 @@ import logos from "./logos";
 export default function Skills() {
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Skills" initOpen>
+      <Accordion header="Skills" headingLevel="h2" initOpen>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
           {logos.map((logo: Logo) => (
             <div
