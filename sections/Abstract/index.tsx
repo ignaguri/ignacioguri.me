@@ -15,17 +15,15 @@ export default function Abstract() {
           </a>
         </h2>
         <p className="text-base text-gray-700 dark:text-gray-300 text-left m-1">
-          I am a Software Engineer capable of analyzing, designing, developing,
-          testing, and debugging high scalability and high performance
-          Web/Web-mobile & iOS applications.
+          I am a Software Engineer capable of analyzing, designing, developing, testing, and
+          debugging high scalability and high performance Web/Web-mobile & iOS applications.
         </p>
         <p className="text-base text-gray-700 dark:text-gray-300 text-left m-1">
-          Working nowadays with TypeScript, mostly with React framework for the
-          web, and NodeJS + Firebase/AWS for the backend.
+          Working nowadays with TypeScript, mostly with React framework for the web, and NodeJS +
+          Firebase/AWS for the backend.
         </p>
         <p className="text-base text-gray-700 dark:text-gray-300 text-left m-1">
-          I&apos;m always keen to learn and try new techs, frameworks &
-          languages.
+          I&apos;m always keen to learn and try new techs, frameworks & languages.
         </p>
       </Accordion>
     </section>

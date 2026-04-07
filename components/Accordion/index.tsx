@@ -43,13 +43,10 @@ export default function Accordion({
         <span className="flex-1">{header}</span>
         <span className="ml-4 transition-transform duration-300 ease-in-out">
           <ChevronIcon
-            className={classNames(
-              "transition-all duration-300 ease-in-out w-5 h-5",
-              {
-                "rotate-0": isOpen,
-                "rotate-180": !isOpen,
-              },
-            )}
+            className={classNames("transition-all duration-300 ease-in-out w-5 h-5", {
+              "rotate-0": isOpen,
+              "rotate-180": !isOpen,
+            })}
           />
         </span>
       </div>

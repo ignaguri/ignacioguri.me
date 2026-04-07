@@ -8,23 +8,18 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_API_TOKEN,
 });
 
-type ListForUserResponse =
-  Endpoints["GET /users/{username}/repos"]["response"]["data"];
-type ListLanguagesResponse =
-  Endpoints["GET /repos/{owner}/{repo}/languages"]["response"]["data"];
+type ListForUserResponse = Endpoints["GET /users/{username}/repos"]["response"]["data"];
+type ListLanguagesResponse = Endpoints["GET /repos/{owner}/{repo}/languages"]["response"]["data"];
 
-export async function fetchGitHubProjects(
-  username: string,
-): Promise<Project[]> {
+export async function fetchGitHubProjects(username: string): Promise<Project[]> {
   "use cache";
   cacheLife({ revalidate: 604800 }); // 7 days
   cacheTag("github-projects");
 
-  const { data: repos }: { data: ListForUserResponse } =
-    await octokit.rest.repos.listForUser({
-      type: "owner",
-      username,
-    });
+  const { data: repos }: { data: ListForUserResponse } = await octokit.rest.repos.listForUser({
+    type: "owner",
+    username,
+  });
 
   const projects = await Promise.all(
     repos.map(async (repo) => {
@@ -40,12 +35,11 @@ export async function fetchGitHubProjects(
       const techs = Object.keys(languagesData);
 
       // Fetch the first page of commits to get the total count
-      const { data: commitsData, headers } =
-        await octokit.rest.repos.listCommits({
-          owner: username,
-          per_page: 10,
-          repo: repo.name,
-        });
+      const { data: commitsData, headers } = await octokit.rest.repos.listCommits({
+        owner: username,
+        per_page: 10,
+        repo: repo.name,
+      });
 
       let commitCount = commitsData.length;
 
