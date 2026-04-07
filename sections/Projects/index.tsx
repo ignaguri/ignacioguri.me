@@ -7,9 +7,9 @@ const Card = ({ name, description, techs, repo, link }: Project) => {
   return (
     <div className="max-w-sm p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl border border-solid border-gray-200 dark:border-gray-700 flex flex-col justify-between">
       <div>
-        <h2 className="text-gray-800 dark:text-gray-100 font-medium text-base sm:text-lg">
+        <h3 className="text-gray-800 dark:text-gray-100 font-medium text-base sm:text-lg">
           {name}
-        </h2>
+        </h3>
         <p className="mt-2 text-sm lg:text-base text-gray-600 dark:text-gray-300 italic">
           {description}
         </p>
@@ -57,19 +57,17 @@ export default async function Projects() {
   if (error) {
     return (
       <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-        <div className="text-base text-gray-500 dark:text-gray-400">
-          Error: {error}
-        </div>
+        <div className="text-base text-gray-500 dark:text-gray-400">Error: {error}</div>
       </section>
     );
   }
 
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Projects" initOpen>
-        <h3 className="text-base text-gray-500 dark:text-gray-400 text-left m-1">
+      <Accordion header="Projects" headingLevel="h2" initOpen>
+        <p className="text-base text-gray-500 dark:text-gray-400 text-left m-1">
           Some side projects I&apos;ve done
-        </h3>
+        </p>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 mb-4">
           {projects.map((project: Project) => (
             <Card key={project.name} {...project} />

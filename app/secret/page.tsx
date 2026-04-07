@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Client info page",
+  robots: "noindex, nofollow",
 };
 
 async function getClientInfo() {

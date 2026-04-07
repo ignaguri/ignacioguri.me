@@ -23,10 +23,10 @@ const CardSkeleton = () => (
 export default function ProjectsSkeleton() {
   return (
     <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Projects" initOpen>
-        <h3 className="text-base text-gray-500 dark:text-gray-400 text-left m-1">
+      <Accordion header="Projects" headingLevel="h2" initOpen>
+        <p className="text-base text-gray-500 dark:text-gray-400 text-left m-1">
           Some side projects I&apos;ve done
-        </h3>
+        </p>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 mb-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <CardSkeleton key={i} />

@@ -13,9 +13,7 @@ export default function Experience() {
       companyUrl: "https://www.linkedin.com/company/holidu/",
       description:
         "Working on a platform for vacation rentals, helping travelers find the perfect accommodation.",
-      positions: [
-        { title: "Senior Frontend Engineer", period: "Apr 2024 - Present" },
-      ],
+      positions: [{ title: "Senior Frontend Engineer", period: "Apr 2024 - Present" }],
       tasks: ["Web front-end development", "UI/UX improvements"],
     },
     {
@@ -67,11 +65,8 @@ export default function Experience() {
       logoHeight: 60,
       company: "Intel (now McAfee)",
       companyUrl: "https://www.linkedin.com/company/mcafee/",
-      description:
-        "Internship - Web front-end development & Testing automation",
-      positions: [
-        { title: "Engineering Intern", period: "Mar 2016 - Mar 2017" },
-      ],
+      description: "Internship - Web front-end development & Testing automation",
+      positions: [{ title: "Engineering Intern", period: "Mar 2016 - Mar 2017" }],
       tasks: [
         "Web-app for parsing & filtering security report logs",
         "Tests automation with Selenium",
@@ -82,7 +77,7 @@ export default function Experience() {
 
   return (
     <section className="max-w-sm mt-4 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Experience" initOpen>
+      <Accordion header="Experience" headingLevel="h2" initOpen>
         <div className="mt-6 space-y-8">
           {experiences.map((exp, index) => (
             <div key={exp.id} className="relative">
@@ -154,9 +149,7 @@ export default function Experience() {
                           key={idx}
                           className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2"
                         >
-                          <span className="text-gray-400 shrink-0 mt-0.5">
-                            •
-                          </span>
+                          <span className="text-gray-400 shrink-0 mt-0.5">•</span>
                           <span className="flex-1">{task}</span>
                         </li>
                       ))}
