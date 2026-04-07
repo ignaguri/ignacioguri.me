@@ -57,9 +57,7 @@ export default async function Projects() {
   if (error) {
     return (
       <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-        <div className="text-base text-gray-500 dark:text-gray-400">
-          Error: {error}
-        </div>
+        <div className="text-base text-gray-500 dark:text-gray-400">Error: {error}</div>
       </section>
     );
   }

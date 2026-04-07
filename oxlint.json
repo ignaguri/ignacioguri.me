@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["nextjs", "typescript"],
+  "rules": {
+    "no-console": "warn",
+    "typescript/consistent-type-imports": "error",
+    "typescript/no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "ignore_patterns": [".next", "node_modules", "out", "build", "dist"]
+}

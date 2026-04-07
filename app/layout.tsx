@@ -69,10 +69,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
               name: "Ignacio Gurí",
               url: "https://ignacioguri.me",
               jobTitle: "Senior Frontend Engineer",
-              sameAs: [
-                "https://www.linkedin.com/in/ignacio-guri/",
-                "https://github.com/ignaguri",
-              ],
+              sameAs: ["https://www.linkedin.com/in/ignacio-guri/", "https://github.com/ignaguri"],
             }),
           }}
         />
