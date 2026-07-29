@@ -33,3 +33,7 @@ yarn-error.log*
 .env.production.local
 .vercel
 .env*.local
+
+# agent working files: specs and plans stay local
+.superpowers/
+docs/superpowers/

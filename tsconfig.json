@@ -14,13 +14,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"],
-      "@pages/*": ["pages/*"],
-      "@sections/*": ["sections/*"],
-      "@styles/*": ["styles/*"]
+      "@components/*": ["./components/*"],
+      "@lib/*": ["./lib/*"],
+      "@pages/*": ["./pages/*"],
+      "@sections/*": ["./sections/*"],
+      "@styles/*": ["./styles/*"]
     },
     "plugins": [
       {
