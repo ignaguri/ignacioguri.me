@@ -1,79 +1,84 @@
-import Accordion from "@components/Accordion";
-import { fetchGitHubProjects } from "@lib/github";
-
 import type { Project } from "@lib/types";
 
-const Card = ({ name, description, techs, repo, link }: Project) => {
+import { fetchProjects } from "@lib/github";
+
+function ProjectEntry({ project }: { project: Project }) {
   return (
-    <div className="max-w-sm p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl border border-solid border-gray-200 dark:border-gray-700 flex flex-col justify-between">
-      <div>
-        <h3 className="text-gray-800 dark:text-gray-100 font-medium text-base sm:text-lg">
-          {name}
-        </h3>
-        <p className="mt-2 text-sm lg:text-base text-gray-600 dark:text-gray-300 italic">
-          {description}
-        </p>
+    <article className="flex flex-col gap-2 sm:flex-row sm:gap-8">
+      {/* Empty when the repo has no stars: a placeholder glyph here is noise
+          visually and gets announced as "em dash" on every row. */}
+      <div className="shrink-0 font-mono text-xs text-dim sm:w-32 sm:pt-1">
+        {project.stars > 0 && (
+          <span aria-label={`${project.stars} stars on GitHub`}>★ {project.stars}</span>
+        )}
       </div>
-      <div>
-        <div className="border-t-2 border-gray-200 dark:border-gray-700 my-2" />
-        <p className="text-sm lg:text-base text-gray-800 dark:text-gray-200">
-          <span className="underline">Techs</span>: {techs.join(" - ")}
-        </p>
-        <div className="flex justify-between mt-2 text-sm lg:text-base">
+
+      <div className="flex-1">
+        <h3 className="font-display text-base font-bold">{project.title}</h3>
+        <p className="mt-1 text-sm text-muted">{project.description}</p>
+
+        {project.techs.length > 0 && (
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {project.techs.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-md bg-accent-bg px-2 py-0.5 font-mono text-[11px] text-accent-text"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="mt-3 flex gap-4 text-sm">
           <a
-            href={repo}
-            className="no-underline dark:text-blue-400"
+            href={project.url}
+            target="_blank"
             rel="noopener noreferrer"
-            aria-label={`View ${name} repository`}
+            aria-label={`Repo: ${project.title}`}
           >
             Repo
           </a>
-          {link && (
+          {project.link && (
             <a
-              href={link}
-              className="no-underline dark:text-blue-400"
+              href={project.link}
+              target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Visit ${name} live site`}
+              aria-label={`Live site: ${project.title}`}
             >
-              Link
+              Live site
             </a>
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
-};
+}
 
 export default async function Projects() {
-  let projects: Project[] = [];
-  let error: string | null = null;
+  const projects = await fetchProjects();
 
-  try {
-    projects = await fetchGitHubProjects("ignaguri");
-  } catch (err) {
-    error = err instanceof Error ? err.message : "An unknown error occurred";
-  }
-
-  if (error) {
-    return (
-      <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-        <div className="text-base text-gray-500 dark:text-gray-400">Error: {error}</div>
-      </section>
-    );
+  if (projects.length === 0) {
+    return null;
   }
 
   return (
-    <section className="max-w-sm mt-5 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Projects" headingLevel="h2" initOpen>
-        <p className="text-base text-gray-500 dark:text-gray-400 text-left m-1">
-          Some side projects I&apos;ve done
-        </p>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 mb-4">
-          {projects.map((project: Project) => (
-            <Card key={project.name} {...project} />
-          ))}
-        </div>
-      </Accordion>
+    <section aria-labelledby="projects-heading">
+      <div className="mb-8 flex items-baseline gap-4">
+        <h2
+          id="projects-heading"
+          className="font-mono text-xs uppercase tracking-[0.14em] text-dim"
+        >
+          Projects
+        </h2>
+        <span className="h-px flex-1 bg-line" aria-hidden="true" />
+      </div>
+
+      <div className="space-y-10">
+        {projects.map((project) => (
+          <ProjectEntry key={project.repo} project={project} />
+        ))}
+      </div>
     </section>
   );
 }
