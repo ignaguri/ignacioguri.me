@@ -118,9 +118,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <main id="main" className="grow">
             {children}
           </main>
+          <Footer />
           <Analytics />
         </div>
-        <Footer />
       </body>
     </html>
   );
