@@ -11,7 +11,8 @@
     "fmt:check": "oxfmt --check .",
     "start": "next start",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",
