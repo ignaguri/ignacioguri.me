@@ -1,171 +1,105 @@
-import Accordion from "@components/Accordion";
 import Image from "next/image";
 
+import type { Role } from "@lib/data/experience";
+
+import { experience } from "@lib/data/experience";
+
+function formatPeriod(from: string, to: string | null): string {
+  if (to === null) {
+    return `${from} — Present`;
+  }
+  return `${from} — ${to}`;
+}
+
+function RoleEntry({ role }: { role: Role }) {
+  return (
+    <article className="flex flex-col gap-4 sm:flex-row sm:gap-8">
+      <div className="shrink-0 sm:w-32">
+        <Image
+          src={role.logo.src}
+          alt={role.logo.alt}
+          width={role.logo.width}
+          height={role.logo.height}
+          className="max-h-10 w-auto max-w-28 object-contain"
+          style={{ width: "auto", height: "auto" }}
+        />
+      </div>
+
+      <div className="flex-1">
+        <h3 className="font-display text-base font-bold">
+          <a
+            href={role.companyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ink no-underline hover:underline"
+          >
+            {role.company}
+          </a>
+        </h3>
+        <p className="mt-1 text-sm text-muted">{role.context}</p>
+
+        <ul className="mt-3 space-y-1">
+          {role.positions.map((position) => (
+            <li
+              key={`${position.title}-${position.from}`}
+              className="flex flex-col gap-x-3 sm:flex-row sm:items-baseline"
+            >
+              <span className="font-mono text-xs text-dim sm:w-40 sm:shrink-0">
+                {formatPeriod(position.from, position.to)}
+              </span>
+              <span className="text-sm font-medium">{position.title}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-3 text-sm text-muted">{role.summary}</p>
+      </div>
+    </article>
+  );
+}
+
 export default function Experience() {
-  const experiences = [
-    {
-      id: "holidu",
-      logo: "/logos/holidu.png",
-      logoAlt: "Holidu",
-      logoWidth: 120,
-      logoHeight: 30,
-      company: "Holidu GmbH",
-      companyUrl: "https://www.linkedin.com/company/holidu/",
-      description:
-        "Working on a platform for vacation rentals, helping travelers find the perfect accommodation.",
-      positions: [{ title: "Senior Frontend Engineer", period: "Apr 2024 - Present" }],
-      tasks: ["Web front-end development", "UI/UX improvements"],
-    },
-    {
-      id: "doctari",
-      logo: "/logos/doctari_pro.png",
-      logoAlt: "Doctari",
-      logoWidth: 120,
-      logoHeight: 24,
-      company: "Doctari Group",
-      companyUrl: "https://www.linkedin.com/company/doctari-group/",
-      description:
-        "Worked on a platform for hospitals and clinics, to easily hire doctors and caregivers all throughout Germany.",
-      positions: [
-        {
-          title: "Fullstack TypeScript Developer",
-          period: "Sep 2021 - Mar 2024",
-        },
-      ],
-      tasks: ["Web front-end", "Backend (Firebase & AWS)"],
-    },
-    {
-      id: "mercadolibre",
-      logo: "/logos/meli.svg",
-      logoAlt: "Mercado Libre",
-      logoWidth: 120,
-      logoHeight: 60,
-      company: "Mercado Libre",
-      companyUrl: "https://www.linkedin.com/company/mercadolibre/",
-      description:
-        "I worked in several products. An app for managing the Mercado Pago Credit Card, another one that allows users to buy from Mercado Libre and pay in installments without a credit card and a personal loans offer & management one.",
-      positions: [
-        { title: "Sr Software Developer", period: "Mar 2020 - Aug 2021" },
-        { title: "Jr Software Developer", period: "Mar 2019 - Mar 2020" },
-        { title: "IT Assistant", period: "Mar 2018 - Mar 2019" },
-      ],
-      tasks: [
-        "Web & Web mobile front-end",
-        "Emails development",
-        "Test automation",
-        "iOS app",
-        "Internal dashboard web apps",
-      ],
-    },
-    {
-      id: "intel",
-      logo: "/logos/intel.svg",
-      logoAlt: "Intel",
-      logoWidth: 120,
-      logoHeight: 60,
-      company: "Intel (now McAfee)",
-      companyUrl: "https://www.linkedin.com/company/mcafee/",
-      description: "Internship - Web front-end development & Testing automation",
-      positions: [{ title: "Engineering Intern", period: "Mar 2016 - Mar 2017" }],
-      tasks: [
-        "Web-app for parsing & filtering security report logs",
-        "Tests automation with Selenium",
-        "Set up a pipeline of tools for user's feedback & bug reporting",
-      ],
-    },
-  ];
+  const primaryRoles = experience.filter((role) => !role.collapsed);
+  const collapsedRoles = experience.filter((role) => role.collapsed);
 
   return (
-    <section className="max-w-sm mt-4 md:max-w-lg lg:max-w-4xl">
-      <Accordion header="Experience" headingLevel="h2" initOpen>
-        <div className="mt-6 space-y-8">
-          {experiences.map((exp, index) => (
-            <div key={exp.id} className="relative">
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                {/* Company Logo */}
-                <div className="shrink-0">
-                  <Image
-                    className="rounded-lg"
-                    src={exp.logo}
-                    alt={exp.logoAlt}
-                    width={exp.logoWidth}
-                    height={exp.logoHeight}
-                    style={{
-                      objectFit: "contain",
-                      width: "auto",
-                      height: "auto",
-                      maxWidth: "120px",
-                      maxHeight: "60px",
-                    }}
-                  />
-                </div>
+    <section aria-labelledby="experience-heading">
+      <div className="mb-8 flex items-baseline gap-4">
+        <h2
+          id="experience-heading"
+          className="font-mono text-xs uppercase tracking-[0.14em] text-dim"
+        >
+          Experience
+        </h2>
+        <span className="h-px flex-1 bg-line" aria-hidden="true" />
+      </div>
 
-                {/* Company Info and Details */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
-                    <div>
-                      <a
-                        className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors no-underline"
-                        href={exp.companyUrl}
-                        rel="noopener noreferrer"
-                      >
-                        {exp.company}
-                      </a>
-                    </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0">
-                      {exp.positions.map((pos, idx) => (
-                        <div key={idx} className="font-medium">
-                          {pos.period}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+      <div className="space-y-10">
+        {primaryRoles.map((role) => (
+          <RoleEntry key={role.id} role={role} />
+        ))}
+      </div>
 
-                  {/* Position Titles */}
-                  <div className="mb-3">
-                    {exp.positions.map((pos, idx) => (
-                      <div
-                        key={idx}
-                        className="text-base font-medium text-gray-800 dark:text-gray-200"
-                      >
-                        {pos.title}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                    {exp.description}
-                  </p>
-
-                  {/* Tasks */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
-                      Key Responsibilities
-                    </h4>
-                    <ul className="space-y-1.5 list-none">
-                      {exp.tasks.map((task, idx) => (
-                        <li
-                          key={idx}
-                          className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2"
-                        >
-                          <span className="text-gray-400 shrink-0 mt-0.5">•</span>
-                          <span className="flex-1">{task}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Separator */}
-              {index < experiences.length - 1 && (
-                <div className="mt-8 border-t border-gray-200 dark:border-gray-700" />
-              )}
-            </div>
-          ))}
-        </div>
-      </Accordion>
+      {collapsedRoles.length > 0 && (
+        <details className="group mt-8">
+          {/* Arrows are decorative and aria-hidden so the label is announced
+              once. <details> already conveys expanded/collapsed state. */}
+          <summary className="cursor-pointer font-mono text-xs text-dim marker:content-[''] hover:text-muted">
+            <span aria-hidden="true" className="group-open:hidden">
+              ▸{" "}
+            </span>
+            <span aria-hidden="true" className="hidden group-open:inline">
+              ▾{" "}
+            </span>
+            Earlier roles
+          </summary>
+          <div className="mt-6 space-y-10">
+            {collapsedRoles.map((role) => (
+              <RoleEntry key={role.id} role={role} />
+            ))}
+          </div>
+        </details>
+      )}
     </section>
   );
 }

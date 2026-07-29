@@ -4,6 +4,21 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-paper: #fcfcfd;
+  --color-surface: #ffffff;
+  --color-ink: #0d1117;
+  --color-muted: #5b6472;
+  --color-dim: #667080;
+  --color-line: #e6e9ee;
+  --color-accent: #38bdf8;
+  --color-accent-strong: #0284c7;
+  --color-accent-bg: #e4f4fd;
+  --color-accent-text: #0b4a6f;
+
   --min-width-*: initial;
   --min-width-xs: 20rem;
   --min-width-sm: 24rem;
@@ -18,35 +33,71 @@
 }
 
 /*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+  Dark overrides live outside @layer so they win over the theme layer, which
+  emits the light values on :root at equal specificity. Utilities reference
+  var(--color-*), so overriding the variable is enough — no dark: variant needed.
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
+  Contrast ratios are verified: dim 4.88 light / 5.17 dark, accent-strong 3.99
+  light (non-text focus indicator, WCAG 1.4.11 needs 3.0). Do not adjust these
+  without recomputing.
 */
+.dark {
+  --color-paper: #0b0e14;
+  --color-surface: #101822;
+  --color-ink: #e8ecf2;
+  --color-muted: #9aa4b2;
+  --color-dim: #78859a;
+  --color-line: #1d2430;
+  --color-accent: #38bdf8;
+  --color-accent-strong: #38bdf8;
+  --color-accent-bg: #07222f;
+  --color-accent-text: #7dd3fc;
+}
+
+/*
+  Retained because components/Button/styles.css still applies them. That Button
+  component is currently unused; if it goes, these can go with it.
+*/
+@utility outline-blue {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
+}
+
+@utility outline-gray {
+  outline: 2px solid var(--color-muted);
+  outline-offset: 2px;
+}
+
 @layer base {
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-line);
+  }
+
+  /* Inline prose links keep their underline — fixes the link-in-text-block
+     failure where colour was the only cue. */
+  a {
+    color: var(--color-accent-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-strong);
+    outline-offset: 2px;
   }
 }
 
-@utility outline-blue {
-  outline: 1px solid rgba(30, 64, 175, 1);
-  outline-offset: 2px;
-}
-
-@utility outline-gray {
-  outline: 1px solid rgba(156, 163, 175, 1);
-  outline-offset: 2px;
-}
-
-@layer base {
-  a {
-    @apply text-blue-600 underline dark:text-blue-400;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

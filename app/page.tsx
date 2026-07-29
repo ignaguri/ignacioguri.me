@@ -1,18 +1,13 @@
+import Experience from "@sections/Experience";
+import Hero from "@sections/Hero";
+import Projects from "@sections/Projects";
+import ProjectsSkeleton from "@sections/Projects/Skeleton";
 import { Suspense } from "react";
 
-import Abstract from "../sections/Abstract";
-import Experience from "../sections/Experience";
-import Header from "../sections/Header";
-import Projects from "../sections/Projects";
-import ProjectsSkeleton from "../sections/Projects/Skeleton";
-import Skills from "../sections/Skills";
-
-export default async function Home() {
+export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center py-10 p-0 sm:py-20">
-      <Header />
-      <Abstract />
-      <Skills />
+    <div className="mx-auto flex w-full max-w-4xl flex-col gap-16 px-4 py-10 sm:py-16">
+      <Hero />
       <Experience />
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
