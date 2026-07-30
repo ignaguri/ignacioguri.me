@@ -10,6 +10,12 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  return playgroundApps
+    .filter((app) => app.kind === "embed")
+    .map((app) => ({ slug: app.slug }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const app = findEmbedApp(playgroundApps, slug);
