@@ -41,7 +41,7 @@ export default async function PlaygroundAppPage({ params }: PageProps) {
 
   return (
     <div className="flex min-h-[70vh] w-full flex-col gap-4 px-4 py-10 sm:py-16">
-      <div className="mx-auto flex w-full max-w-4xl items-center justify-between text-sm">
+      <div className="mx-auto flex w-full max-w-4xl items-center justify-between pr-12 text-sm sm:pr-0">
         <Link href="/playground" className="text-dim hover:text-ink">
           ← Back to Playground
         </Link>
