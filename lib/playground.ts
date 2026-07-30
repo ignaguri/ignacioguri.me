@@ -12,3 +12,8 @@ export function findEmbedApp(apps: PlaygroundApp[], slug: string): PlaygroundApp
   }
   return app;
 }
+
+/** Slugs that have a dedicated /playground/[slug] page. Shared by proxy.ts and generateStaticParams so "embeddable" is defined in exactly one place. */
+export function getEmbedSlugs(apps: PlaygroundApp[]): string[] {
+  return apps.filter((app) => app.kind === "embed").map((app) => app.slug);
+}

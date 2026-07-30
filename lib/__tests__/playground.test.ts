@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { PlaygroundApp } from "../types";
 
-import { findEmbedApp } from "../playground";
+import { findEmbedApp, getEmbedSlugs } from "../playground";
 
 function makeApp(overrides: Partial<PlaygroundApp> = {}): PlaygroundApp {
   return {
@@ -38,5 +38,27 @@ describe("findEmbedApp", () => {
     const result = findEmbedApp(apps, "unknown");
 
     expect(result).toBeNull();
+  });
+});
+
+describe("getEmbedSlugs", () => {
+  it("returns only embed slugs when the array has a mix of embed/external", () => {
+    const apps = [
+      makeApp({ slug: "votateneo", kind: "embed" }),
+      makeApp({ slug: "prostcounter", kind: "external" }),
+      makeApp({ slug: "appsistencia", kind: "embed" }),
+    ];
+
+    const result = getEmbedSlugs(apps);
+
+    expect(result).toEqual(["votateneo", "appsistencia"]);
+  });
+
+  it("returns an empty array when there are no embed entries", () => {
+    const apps = [makeApp({ slug: "prostcounter", kind: "external" })];
+
+    const result = getEmbedSlugs(apps);
+
+    expect(result).toEqual([]);
   });
 });

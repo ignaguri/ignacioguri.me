@@ -8,6 +8,9 @@ import { playgroundApps } from "@lib/data/playground";
 export const metadata: Metadata = {
   title: "Playground",
   description: "A few small apps I've built over the years, live and runnable.",
+  alternates: {
+    canonical: "https://ignacioguri.me/playground",
+  },
 };
 
 function PlaygroundEntry({ app }: { app: PlaygroundApp }) {

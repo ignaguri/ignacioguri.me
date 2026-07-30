@@ -86,7 +86,7 @@ export default async function Projects() {
         <Link href="/playground" className="text-accent-text">
           Playground →
         </Link>{" "}
-        — a few of these, live and runnable, no résumé required.
+        a few of these, live and runnable, no résumé required.
       </p>
     </section>
   );

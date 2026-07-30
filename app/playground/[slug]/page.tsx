@@ -4,16 +4,14 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { playgroundApps } from "@lib/data/playground";
-import { findEmbedApp } from "@lib/playground";
+import { findEmbedApp, getEmbedSlugs } from "@lib/playground";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return playgroundApps
-    .filter((app) => app.kind === "embed")
-    .map((app) => ({ slug: app.slug }));
+  return getEmbedSlugs(playgroundApps).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -27,6 +25,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: app.title,
     description: app.description,
+    alternates: {
+      canonical: `https://ignacioguri.me/playground/${app.slug}`,
+    },
   };
 }
 
