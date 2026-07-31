@@ -50,7 +50,7 @@ export default function ThemeToggle({ className }: OnlyClassNameProps) {
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={isDark}
       className={classNames(
-        "inline-flex size-9 items-center justify-center rounded-full",
+        "inline-flex size-11 items-center justify-center rounded-full",
         "border border-line bg-surface text-muted",
         "transition-colors hover:text-ink",
         className,
