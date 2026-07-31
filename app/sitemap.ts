@@ -15,5 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: "https://ignacioguri.me/playground",
+      lastModified: new Date(LAST_CONTENT_UPDATE),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
   ];
 }

@@ -4,6 +4,7 @@ import { profile } from "@lib/data/profile";
 import { buildPersonSchema } from "@lib/jsonLd";
 import Footer from "@sections/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import classNames from "classnames";
 import { Bricolage_Grotesque, JetBrains_Mono, Public_Sans } from "next/font/google";
 import Script from "next/script";
 
@@ -83,7 +84,11 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
+      className={classNames(
+        displayFont.variable,
+        bodyFont.variable,
+        monoFont.variable,
+      )}
     >
       <head>
         <Script

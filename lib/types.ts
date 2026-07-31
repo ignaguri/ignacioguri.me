@@ -43,3 +43,13 @@ export interface SelectedRepo {
 export type Project = SelectedRepo & {
   techs: string[];
 };
+
+/** A curated playground app: something runnable/previewable, not career evidence. */
+export interface PlaygroundApp {
+  slug: string;
+  title: string;
+  description: string;
+  /** "embed" gets a dedicated /playground/[slug] page with an iframe; "external" just links out. */
+  kind: "embed" | "external";
+  href: string;
+}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import type { Project } from "@lib/types";
 
 import { fetchProjects } from "@lib/github";
@@ -79,6 +81,13 @@ export default async function Projects() {
           <ProjectEntry key={project.repo} project={project} />
         ))}
       </div>
+
+      <p className="mt-10 border-t border-line pt-6 text-sm text-muted">
+        <Link href="/playground" className="text-accent-text">
+          Playground →
+        </Link>{" "}
+        a few of these, live and runnable. Go poke at them yourself.
+      </p>
     </section>
   );
 }

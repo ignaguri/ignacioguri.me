@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "../components/styles.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -52,20 +51,6 @@
   --color-accent-strong: #38bdf8;
   --color-accent-bg: #07222f;
   --color-accent-text: #7dd3fc;
-}
-
-/*
-  Retained because components/Button/styles.css still applies them. That Button
-  component is currently unused; if it goes, these can go with it.
-*/
-@utility outline-blue {
-  outline: 2px solid var(--color-accent-strong);
-  outline-offset: 2px;
-}
-
-@utility outline-gray {
-  outline: 2px solid var(--color-muted);
-  outline-offset: 2px;
 }
 
 @layer base {
