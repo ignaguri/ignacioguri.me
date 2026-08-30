@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import type { PlaygroundApp } from "@lib/types";
 
+import Breadcrumb from "@components/Breadcrumb";
+
 import { playgroundApps } from "@lib/data/playground";
 
 export const metadata: Metadata = {
@@ -45,10 +47,14 @@ export default function PlaygroundPage() {
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-16 px-4 py-10 sm:py-16">
       <div>
-        <h1 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">Playground</h1>
+        <Breadcrumb trail={[{ label: "Home", href: "/" }, { label: "Playground" }]} />
+
+        <h1 className="mt-4 font-display text-2xl font-bold tracking-tight sm:text-3xl">
+          Playground
+        </h1>
         <p className="mt-2 text-sm text-muted">
-          A few small apps I&apos;ve built over the years. Some run right here, some live on
-          their own.
+          A few small apps I&apos;ve built over the years. Some run right here, some live on their
+          own.
         </p>
       </div>
 
@@ -57,10 +63,6 @@ export default function PlaygroundPage() {
           <PlaygroundEntry key={app.slug} app={app} />
         ))}
       </div>
-
-      <Link href="/" className="text-sm text-dim hover:text-ink">
-        ← Back home
-      </Link>
     </div>
   );
 }

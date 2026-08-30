@@ -11,7 +11,7 @@ function ProjectEntry({ project }: { project: Project }) {
           visually and gets announced as "em dash" on every row. */}
       <div className="shrink-0 font-mono text-xs text-dim sm:w-32 sm:pt-1">
         {project.stars > 0 && (
-          <span aria-label={`${project.stars} stars on GitHub`}>★ {project.stars}</span>
+          <span aria-label={`${project.stars} star(s) on GitHub`}>★ {project.stars}</span>
         )}
       </div>
 

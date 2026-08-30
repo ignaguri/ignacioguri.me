@@ -11,7 +11,7 @@ Personal portfolio and resume site for Ignacio Gurí (ignacioguri.me). Showcases
 - **GitHub integration:** Octokit SDK fetches projects dynamically (7-day in-memory cache)
 - **Analytics:** @vercel/analytics
 - **Deployment:** Vercel
-- **Node version:** 22 (.nvmrc)
+- **Node version:** 24 (.nvmrc, `engines.node`, Volta pin)
 
 ## Project Structure
 
