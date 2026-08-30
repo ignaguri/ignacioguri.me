@@ -38,7 +38,7 @@ export interface Profile {
 export const profile: Profile = {
   name: "Ignacio Gurí",
   role: "Senior Frontend Engineer",
-  intro: "If something can be an app, I'll probably end up building it. Hence the side projects.",
+  intro: "If something can be an app, I'll probably end up building it.",
   now: "Guest Experience & Visibility at Holidu, helping travellers find the right place to stay.",
   location: {
     city: "Munich",

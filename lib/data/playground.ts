@@ -20,14 +20,16 @@ export const playgroundApps: PlaygroundApp[] = [
   {
     slug: "prostcounter",
     title: "ProstCounter",
-    description: "Same app as in Projects, but here you actually get to log a round. Go count your Maß.",
+    description:
+      "Same app as in Projects, but here you actually get to log a round. Go count your Maß.",
     kind: "external",
     href: "https://www.prostcounter.fun",
   },
   {
     slug: "football-with-friends",
     title: "football-with-friends",
-    description: "Also in Projects, but this is the live thing: jump in and see how the next match gets organised.",
+    description:
+      "Also in Projects, but this is the live thing: jump in and see how the next match gets organised.",
     kind: "external",
     href: "https://football-with-friends.vercel.app",
   },
