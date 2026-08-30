@@ -84,11 +84,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={classNames(
-        displayFont.variable,
-        bodyFont.variable,
-        monoFont.variable,
-      )}
+      className={classNames(displayFont.variable, bodyFont.variable, monoFont.variable)}
     >
       <head>
         <Script
