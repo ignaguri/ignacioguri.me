@@ -21,5 +21,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: "https://ignacioguri.me/playground/webmcp",
+      lastModified: new Date("2026-10-12"),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
   ];
 }

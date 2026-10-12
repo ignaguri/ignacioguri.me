@@ -1,5 +1,6 @@
 import SkipLink from "@components/SkipLink";
 import ThemeToggle from "@components/ThemeToggle";
+import WebMcpTools from "@components/WebMcpTools";
 import { profile } from "@lib/data/profile";
 import { buildPersonSchema } from "@lib/jsonLd";
 import Footer from "@sections/Footer";
@@ -79,6 +80,9 @@ export const viewport: Viewport = {
   ],
 };
 
+/** Chrome origin trial token for WebMCP, registered for ignacioguri.me. */
+const webMcpOriginTrialToken = process.env.WEBMCP_ORIGIN_TRIAL_TOKEN;
+
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html
@@ -87,6 +91,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       className={classNames(displayFont.variable, bodyFont.variable, monoFont.variable)}
     >
       <head>
+        {webMcpOriginTrialToken && (
+          <meta httpEquiv="origin-trial" content={webMcpOriginTrialToken} />
+        )}
         <Script
           id="theme-init"
           strategy="beforeInteractive"
@@ -121,6 +128,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           </main>
           <Footer />
           <Analytics />
+          <WebMcpTools />
         </div>
       </body>
     </html>
