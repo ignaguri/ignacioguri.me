@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 import { playgroundApps } from "@lib/data/playground";
-import { getEmbedSlugs } from "@lib/playground";
+import { getRoutableSlugs } from "@lib/playground";
 
 /**
  * Looks redundant with the `notFound()` call in app/playground/[slug]/page.tsx
@@ -15,11 +15,11 @@ import { getEmbedSlugs } from "@lib/playground";
  * produce a genuine 404. Deleting this silently regresses invalid
  * `/playground/:slug` requests back to HTTP 200.
  */
-const embedSlugs = new Set(getEmbedSlugs(playgroundApps));
+const routableSlugs = new Set(getRoutableSlugs(playgroundApps));
 
 export function proxy(request: NextRequest) {
   const match = request.nextUrl.pathname.match(/^\/playground\/([^/]+)$/);
-  if (match && !embedSlugs.has(match[1])) {
+  if (match && !routableSlugs.has(match[1])) {
     const url = request.nextUrl.clone();
     url.pathname = "/__playground_404__";
     return NextResponse.rewrite(url);

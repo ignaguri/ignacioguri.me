@@ -23,11 +23,17 @@ function PlaygroundEntry({ app }: { app: PlaygroundApp }) {
         <p className="mt-1 text-sm text-muted">{app.description}</p>
 
         <div className="mt-3 flex gap-4 text-sm">
-          {app.kind === "embed" ? (
+          {app.kind === "embed" && (
             <Link href={`/playground/${app.slug}`} aria-label={`Run ${app.title}`}>
               Run
             </Link>
-          ) : (
+          )}
+          {app.kind === "page" && (
+            <Link href={app.href} aria-label={`Read about ${app.title}`}>
+              Read
+            </Link>
+          )}
+          {app.kind === "external" && (
             <a
               href={app.href}
               target="_blank"
