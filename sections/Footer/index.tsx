@@ -22,6 +22,12 @@ export default function Footer() {
       <Link href="/playground" className="text-accent-text">
         Playground
       </Link>
+      <span className="hidden sm:inline" aria-hidden="true">
+        ·
+      </span>
+      <Link href="/playground/webmcp" className="text-accent-text">
+        Agent-ready (WebMCP)
+      </Link>
     </footer>
   );
 }

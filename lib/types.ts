@@ -49,7 +49,10 @@ export interface PlaygroundApp {
   slug: string;
   title: string;
   description: string;
-  /** "embed" gets a dedicated /playground/[slug] page with an iframe; "external" just links out. */
-  kind: "embed" | "external";
+  /**
+   * "embed" gets a dedicated /playground/[slug] page with an iframe, "page" is a
+   * hand-built route under /playground, "external" just links out.
+   */
+  kind: "embed" | "page" | "external";
   href: string;
 }

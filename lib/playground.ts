@@ -13,7 +13,12 @@ export function findEmbedApp(apps: PlaygroundApp[], slug: string): PlaygroundApp
   return app;
 }
 
-/** Slugs that have a dedicated /playground/[slug] page. Shared by proxy.ts and generateStaticParams so "embeddable" is defined in exactly one place. */
+/** Slugs served by the iframe /playground/[slug] page. Used by generateStaticParams. */
 export function getEmbedSlugs(apps: PlaygroundApp[]): string[] {
   return apps.filter((app) => app.kind === "embed").map((app) => app.slug);
+}
+
+/** Every slug with a page of its own under /playground. Used by proxy.ts to tell real routes from 404s. */
+export function getRoutableSlugs(apps: PlaygroundApp[]): string[] {
+  return apps.filter((app) => app.kind !== "external").map((app) => app.slug);
 }

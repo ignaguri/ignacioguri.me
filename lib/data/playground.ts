@@ -33,4 +33,12 @@ export const playgroundApps: PlaygroundApp[] = [
     kind: "external",
     href: "https://football-with-friends.vercel.app",
   },
+  {
+    slug: "webmcp",
+    title: "WebMCP",
+    description:
+      "This site exposes tools to AI agents running in your browser. Here's what they can do.",
+    kind: "page",
+    href: "/playground/webmcp",
+  },
 ];
