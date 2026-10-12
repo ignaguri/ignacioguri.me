@@ -2,12 +2,11 @@
 
 import MoonIcon from "@components/Icons/Moon";
 import SunIcon from "@components/Icons/Sun";
+import { applyTheme, THEME_CHANGE_EVENT, THEME_STORAGE_KEY } from "@lib/theme";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 
 import type { OnlyClassNameProps } from "@lib/types";
-
-const STORAGE_KEY = "theme";
 
 export default function ThemeToggle({ className }: OnlyClassNameProps) {
   const [isDark, setIsDark] = useState(false);
@@ -25,7 +24,7 @@ export default function ThemeToggle({ className }: OnlyClassNameProps) {
 
     const handleSystemChange = (event: MediaQueryListEvent) => {
       // Only follow the system while the user has made no explicit choice.
-      if (localStorage.getItem(STORAGE_KEY) !== null) {
+      if (localStorage.getItem(THEME_STORAGE_KEY) !== null) {
         return;
       }
       document.documentElement.classList.toggle("dark", event.matches);
@@ -36,11 +35,17 @@ export default function ThemeToggle({ className }: OnlyClassNameProps) {
     return () => mediaQuery.removeEventListener("change", handleSystemChange);
   }, []);
 
+  useEffect(() => {
+    const handleThemeChange = (event: Event) => {
+      setIsDark((event as CustomEvent<boolean>).detail);
+    };
+
+    window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
+    return () => window.removeEventListener(THEME_CHANGE_EVENT, handleThemeChange);
+  }, []);
+
   const toggleTheme = () => {
-    const nextIsDark = !isDark;
-    document.documentElement.classList.toggle("dark", nextIsDark);
-    localStorage.setItem(STORAGE_KEY, nextIsDark ? "dark" : "light");
-    setIsDark(nextIsDark);
+    applyTheme(!isDark);
   };
 
   return (
