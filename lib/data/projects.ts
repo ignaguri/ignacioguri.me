@@ -25,4 +25,10 @@ export const projectOverrides: ProjectOverride[] = [
     description: "Chrome extension that scores flat listings and drafts the reply to the landlord.",
     order: 3,
   },
+  {
+    repo: "ig-cleanup",
+    title: "Instagram Cleanup",
+    description: "Chrome extension to swipe through who you follow and decide who stays. Keyboard or voice.",
+    order: 4,
+  },
 ];
