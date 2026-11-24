@@ -32,15 +32,22 @@ function ProjectEntry({ project }: { project: Project }) {
           </ul>
         )}
 
-        <div className="mt-3 flex gap-4 text-sm">
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Repo: ${project.title}`}
-          >
-            Repo
-          </a>
+        <div className="mt-3 flex items-baseline gap-4 text-sm">
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Repo: ${project.title}`}
+            >
+              Repo
+            </a>
+          )}
+          {project.isPrivate && (
+            <span className="font-mono text-xs text-dim" title="The repo is private">
+              private repo
+            </span>
+          )}
           {project.link && (
             <a
               href={project.link}

@@ -3,8 +3,8 @@ import { Octokit } from "octokit";
 
 import type { Project, RepoSummary } from "@lib/types";
 
-import { GITHUB_USERNAME, projectOverrides } from "@lib/data/projects";
-import { fallbackProjects, refineTechs, selectRepos } from "@lib/projects";
+import { GITHUB_USERNAME, privateProjects, projectOverrides } from "@lib/data/projects";
+import { fallbackProjects, mergeProjects, refineTechs, selectRepos } from "@lib/projects";
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_API_TOKEN,
@@ -20,6 +20,14 @@ async function fetchTechs(username: string, repo: string): Promise<string[]> {
   } catch {
     return [];
   }
+}
+
+function curatedFallback(): Project[] {
+  return mergeProjects(
+    fallbackProjects(projectOverrides, GITHUB_USERNAME),
+    privateProjects,
+    projectOverrides,
+  );
 }
 
 /**
@@ -45,17 +53,18 @@ export async function fetchProjects(): Promise<Project[]> {
     const selected = selectRepos(data as unknown as RepoSummary[], projectOverrides);
 
     if (selected.length === 0) {
-      return fallbackProjects(projectOverrides, GITHUB_USERNAME);
+      return curatedFallback();
     }
 
-    return await Promise.all(
+    const withTechs = await Promise.all(
       selected.map(async (project) => ({
         ...project,
         techs: await fetchTechs(GITHUB_USERNAME, project.repo),
       })),
     );
+    return mergeProjects(withTechs, privateProjects, projectOverrides);
   } catch (error) {
     console.error("[github] falling back to curated projects:", error);
-    return fallbackProjects(projectOverrides, GITHUB_USERNAME);
+    return curatedFallback();
   }
 }

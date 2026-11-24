@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { ProjectOverride, RepoSummary } from "../types";
+import type { PrivateProject, Project, ProjectOverride, RepoSummary } from "../types";
 
-import { fallbackProjects, refineTechs, selectRepos } from "../projects";
+import { fallbackProjects, mergeProjects, refineTechs, selectRepos } from "../projects";
 
 function makeRepo(overrides: Partial<RepoSummary> = {}): RepoSummary {
   return {
@@ -190,5 +190,69 @@ describe("refineTechs", () => {
 
   it("handles a repo with no detected languages", () => {
     expect(refineTechs([])).toEqual([]);
+  });
+});
+
+describe("mergeProjects", () => {
+  function makeProject(repo: string): Project {
+    return {
+      repo,
+      title: repo,
+      description: "",
+      url: `https://github.com/ignaguri/${repo}`,
+      link: null,
+      stars: 0,
+      pushedAt: "2026-01-01T00:00:00Z",
+      techs: [],
+    };
+  }
+
+  const scanner: PrivateProject = {
+    repo: "oktoberfest-scanner-ts",
+    title: "Oktoberfest Scanner",
+    description: "Watches tent reservations.",
+    techs: ["TypeScript"],
+    order: 3,
+  };
+
+  it("slots a private project by its order between public ones", () => {
+    const overrides: ProjectOverride[] = [
+      { repo: "one", order: 1 },
+      { repo: "two", order: 2 },
+      { repo: "four", order: 4 },
+    ];
+
+    const result = mergeProjects(
+      [makeProject("one"), makeProject("two"), makeProject("four")],
+      [scanner],
+      overrides,
+    );
+
+    expect(result.map((project) => project.title)).toEqual([
+      "one",
+      "two",
+      "Oktoberfest Scanner",
+      "four",
+    ]);
+    expect(result[2].url).toBeNull();
+    expect(result[2].isPrivate).toBe(true);
+    expect(result[2].techs).toEqual(["TypeScript"]);
+  });
+
+  it("puts an unordered private project after ordered ones", () => {
+    const result = mergeProjects(
+      [makeProject("one")],
+      [{ ...scanner, order: undefined }],
+      [{ repo: "one", order: 1 }],
+    );
+
+    expect(result.map((project) => project.title)).toEqual(["one", "Oktoberfest Scanner"]);
+  });
+
+  it("drops a private entry once its repo shows up publicly", () => {
+    const result = mergeProjects([makeProject("oktoberfest-scanner-ts")], [scanner], []);
+
+    expect(result).toHaveLength(1);
+    expect(result[0].isPrivate).toBeUndefined();
   });
 });

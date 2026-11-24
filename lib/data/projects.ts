@@ -1,11 +1,10 @@
-import type { ProjectOverride } from "@lib/types";
+import type { PrivateProject, ProjectOverride } from "@lib/types";
 
 /** Repos must carry this GitHub topic to appear on the site. */
 export const PORTFOLIO_TOPIC = "portfolio";
 
 export const GITHUB_USERNAME = "ignaguri";
 
-// Descriptions are reviewed and finalised in Task 15.
 export const projectOverrides: ProjectOverride[] = [
   {
     repo: "oktoberfest-attendance",
@@ -23,12 +22,25 @@ export const projectOverrides: ProjectOverride[] = [
     repo: "immoscout-helper",
     title: "immoscout-helper",
     description: "Chrome extension that scores flat listings and drafts the reply to the landlord.",
-    order: 3,
+    order: 4,
   },
   {
     repo: "ig-cleanup",
     title: "Instagram Cleanup",
-    description: "Chrome extension to swipe through who you follow and decide who stays. Keyboard or voice.",
-    order: 4,
+    description:
+      "Chrome extension to swipe through who you follow and decide who stays. Keyboard or voice.",
+    order: 5,
+  },
+];
+
+/** Private repos worth showing. GitHub can't list them, so they're written by hand. */
+export const privateProjects: PrivateProject[] = [
+  {
+    repo: "oktoberfest-scanner-ts",
+    title: "Oktoberfest Scanner",
+    description:
+      "Watches the beer tents' reservation pages and pings me the moment a table frees up. Stores every scan, so it also charts when tables drop.",
+    techs: ["TypeScript", "Svelte", "Hono", "SQLite"],
+    order: 3,
   },
 ];
