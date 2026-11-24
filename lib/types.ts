@@ -56,3 +56,14 @@ export interface PlaygroundApp {
   kind: "embed" | "page" | "external";
   href: string;
 }
+
+/** An app published on the stores. `category` is schema.org's applicationCategory. */
+export interface PublishedApp {
+  slug: string;
+  title: string;
+  description: string;
+  icon: string;
+  category: string;
+  stores: { appStore: string; googlePlay?: string };
+  repo?: string;
+}
