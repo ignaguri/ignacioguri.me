@@ -3,12 +3,13 @@ import Image from "next/image";
 import type { PublishedApp } from "@lib/types";
 
 import { publishedApps } from "@lib/data/apps";
+import { buildAppsSchema } from "@lib/jsonLd";
 
 function AppEntry({ app }: { app: PublishedApp }) {
   const links = [
     { label: "App Store", href: app.stores.appStore },
     { label: "Google Play", href: app.stores.googlePlay },
-    { label: "Repo", href: app.repo },
+    { label: "Repo", href: app.repoUrl },
   ].filter((link): link is { label: string; href: string } => Boolean(link.href));
 
   return (
@@ -48,6 +49,11 @@ function AppEntry({ app }: { app: PublishedApp }) {
 export default function Apps() {
   return (
     <section aria-labelledby="apps-heading">
+      {/* Here, not in the layout: the apps are only on this page. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildAppsSchema()) }}
+      />
       <div className="mb-8 flex items-baseline gap-4">
         <h2 id="apps-heading" className="font-mono text-xs uppercase tracking-[0.14em] text-dim">
           Apps
