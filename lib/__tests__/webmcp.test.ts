@@ -41,9 +41,10 @@ describe("createWebMcpTools", () => {
     expect(deps.setTheme).toHaveBeenCalledExactlyOnceWith(true);
   });
 
-  it("returns projects from the injected fetcher", async () => {
-    const { run } = setup();
+  it("returns projects from the injected fetcher, passing the call's abort signal", async () => {
+    const { deps, run } = setup();
 
     expect(JSON.parse(await run("list_projects"))).toEqual([{ repo: "example" }]);
+    expect(deps.fetchProjects).toHaveBeenCalledWith(expect.any(AbortSignal));
   });
 });

@@ -10,13 +10,14 @@ export const navigationTargets = [
 ];
 
 /** Everything about a tool except how it runs. Shared with the /playground/webmcp page. */
-export type WebMcpToolSpec = Omit<ModelContextTool, "execute">;
+export type WebMcpToolSpec = Omit<WebMCP.ModelContextTool, "execute"> & { title: string };
 
-const noInput: WebMcpToolSpec["inputSchema"] = { type: "object", properties: {} };
+const noInput = { type: "object", properties: {} };
 
 export const webMcpToolSpecs = [
   {
     name: "get_profile",
+    title: "Profile",
     description:
       "Who Ignacio Gurí is: role, current work, location, languages, tech stack and contact links.",
     inputSchema: noInput,
@@ -24,6 +25,7 @@ export const webMcpToolSpecs = [
   },
   {
     name: "get_experience",
+    title: "Work experience",
     description:
       "Ignacio's work history, newest first: companies, positions with dates, and a one-line summary of each role.",
     inputSchema: noInput,
@@ -31,6 +33,7 @@ export const webMcpToolSpecs = [
   },
   {
     name: "list_projects",
+    title: "Side projects",
     description:
       "Ignacio's side projects from GitHub, with description, repo URL, live link and tech stack.",
     inputSchema: noInput,
@@ -38,6 +41,7 @@ export const webMcpToolSpecs = [
   },
   {
     name: "list_playground_apps",
+    title: "Playground apps",
     description:
       "Small runnable apps in the site's playground. Ones with a path can be opened with navigate, the rest live on their own url.",
     inputSchema: noInput,
@@ -45,6 +49,7 @@ export const webMcpToolSpecs = [
   },
   {
     name: "navigate",
+    title: "Open a page",
     description: "Open a page of this site in the current tab.",
     inputSchema: {
       type: "object",
@@ -54,6 +59,7 @@ export const webMcpToolSpecs = [
   },
   {
     name: "set_theme",
+    title: "Set theme",
     description: "Switch the site between light and dark theme.",
     inputSchema: {
       type: "object",
@@ -68,11 +74,15 @@ type ToolName = (typeof webMcpToolSpecs)[number]["name"];
 export interface WebMcpDeps {
   navigate: (path: string) => void;
   setTheme: (isDark: boolean) => void;
-  fetchProjects: () => Promise<unknown>;
+  fetchProjects: (signal: AbortSignal) => Promise<unknown>;
 }
 
-export function createWebMcpTools(deps: WebMcpDeps): ModelContextTool[] {
-  const executors: Record<ToolName, ModelContextTool["execute"]> = {
+type StringExecutor = WebMCP.ToolExecuteCallback<Record<string, unknown>, string>;
+
+export function createWebMcpTools(
+  deps: WebMcpDeps,
+): (WebMcpToolSpec & { execute: StringExecutor })[] {
+  const executors: Record<ToolName, StringExecutor> = {
     get_profile: async () => JSON.stringify(profile),
     get_experience: async () =>
       JSON.stringify(
@@ -83,7 +93,7 @@ export function createWebMcpTools(deps: WebMcpDeps): ModelContextTool[] {
           summary,
         })),
       ),
-    list_projects: async () => JSON.stringify(await deps.fetchProjects()),
+    list_projects: async (_input, { signal }) => JSON.stringify(await deps.fetchProjects(signal)),
     list_playground_apps: async () =>
       JSON.stringify(
         playgroundApps.map(({ slug, title, description, kind, href }) =>
@@ -108,9 +118,5 @@ export function createWebMcpTools(deps: WebMcpDeps): ModelContextTool[] {
     },
   };
 
-  return webMcpToolSpecs.map((spec) => ({
-    ...spec,
-    inputSchema: { ...spec.inputSchema, required: [...(spec.inputSchema.required ?? [])] },
-    execute: executors[spec.name],
-  }));
+  return webMcpToolSpecs.map((spec) => ({ ...spec, execute: executors[spec.name] }));
 }
