@@ -25,8 +25,8 @@ export default function WebMcpTools() {
       const tools = createWebMcpTools({
         navigate: (path) => router.push(path),
         setTheme: applyTheme,
-        fetchProjects: async () => {
-          const response = await fetch("/api/projects");
+        fetchProjects: async (signal) => {
+          const response = await fetch("/api/projects", { signal });
           if (!response.ok) {
             throw new Error(`Projects request failed with ${response.status}`);
           }
