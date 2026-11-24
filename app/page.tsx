@@ -1,3 +1,4 @@
+import Apps from "@sections/Apps";
 import Experience from "@sections/Experience";
 import Hero from "@sections/Hero";
 import Projects from "@sections/Projects";
@@ -9,6 +10,7 @@ export default function Home() {
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-16 px-4 py-10 sm:py-16">
       <Hero />
       <Experience />
+      <Apps />
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
       </Suspense>
