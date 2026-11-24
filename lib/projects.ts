@@ -1,4 +1,10 @@
-import type { Project, ProjectOverride, RepoSummary, SelectedRepo } from "@lib/types";
+import type {
+  PrivateProject,
+  Project,
+  ProjectOverride,
+  RepoSummary,
+  SelectedRepo,
+} from "@lib/types";
 
 import { PORTFOLIO_TOPIC } from "@lib/data/projects";
 
@@ -105,4 +111,43 @@ export function fallbackProjects(overrides: ProjectOverride[], username: string)
       pushedAt: null,
       techs: [],
     }));
+}
+
+/**
+ * Adds the hand-written private projects to the GitHub ones, sorted by
+ * explicit order. Unordered entries keep their relative position at the end.
+ */
+export function mergeProjects(
+  publicProjects: Project[],
+  privates: PrivateProject[],
+  overrides: ProjectOverride[],
+): Project[] {
+  const overridesByRepo = indexOverrides(overrides);
+  const publicRepos = new Set(publicProjects.map((project) => project.repo));
+  // A private repo made public later would otherwise show twice.
+  const stillPrivate = privates.filter((entry) => !publicRepos.has(entry.repo));
+
+  const ordered = [
+    ...publicProjects.map((project) => ({
+      project,
+      order: overridesByRepo.get(project.repo)?.order ?? NO_EXPLICIT_ORDER,
+    })),
+    ...stillPrivate.map((entry) => ({
+      project: {
+        repo: entry.repo,
+        title: entry.title,
+        description: entry.description,
+        url: null,
+        link: null,
+        stars: 0,
+        pushedAt: null,
+        techs: entry.techs,
+        isPrivate: true as const,
+      },
+      order: entry.order ?? NO_EXPLICIT_ORDER,
+    })),
+  ];
+
+  // Array.prototype.sort is stable, so ties keep GitHub's recency order.
+  return ordered.sort((a, b) => a.order - b.order).map(({ project }) => project);
 }

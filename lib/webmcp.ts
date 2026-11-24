@@ -1,3 +1,4 @@
+import { publishedApps } from "@lib/data/apps";
 import { experience } from "@lib/data/experience";
 import { playgroundApps } from "@lib/data/playground";
 import { profile } from "@lib/data/profile";
@@ -35,7 +36,15 @@ export const webMcpToolSpecs = [
     name: "list_projects",
     title: "Side projects",
     description:
-      "Ignacio's side projects from GitHub, with description, repo URL, live link and tech stack.",
+      "Ignacio's side projects with description, repo URL, live link and tech stack. Private ones have isPrivate: true and no repo URL.",
+    inputSchema: noInput,
+    annotations: { readOnlyHint: true },
+  },
+  {
+    name: "list_apps",
+    title: "Published apps",
+    description:
+      "Ignacio's apps published on the App Store and Google Play, with store links and repo when public.",
     inputSchema: noInput,
     annotations: { readOnlyHint: true },
   },
@@ -94,6 +103,15 @@ export function createWebMcpTools(
         })),
       ),
     list_projects: async (_input, { signal }) => JSON.stringify(await deps.fetchProjects(signal)),
+    list_apps: async () =>
+      JSON.stringify(
+        publishedApps.map(({ title, description, stores, repoUrl }) => ({
+          title,
+          description,
+          stores,
+          repoUrl,
+        })),
+      ),
     list_playground_apps: async () =>
       JSON.stringify(
         playgroundApps.map(({ slug, title, description, kind, href }) =>

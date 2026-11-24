@@ -39,10 +39,22 @@ export interface SelectedRepo {
   pushedAt: string | null;
 }
 
-/** A fully resolved project ready to render. */
-export type Project = SelectedRepo & {
+/** A fully resolved project ready to render. Private ones have no repo url. */
+export type Project = Omit<SelectedRepo, "url"> & {
+  url: string | null;
   techs: string[];
+  isPrivate?: true;
 };
+
+/** A project whose repo is private, written by hand since GitHub won't list it. */
+export interface PrivateProject {
+  /** GitHub repo name, so the entry drops out once the repo turns public. */
+  repo: string;
+  title: string;
+  description: string;
+  techs: string[];
+  order?: number;
+}
 
 /** A curated playground app: something runnable/previewable, not career evidence. */
 export interface PlaygroundApp {
@@ -55,4 +67,15 @@ export interface PlaygroundApp {
    */
   kind: "embed" | "page" | "external";
   href: string;
+}
+
+/** An app published on the stores. `category` is schema.org's applicationCategory. */
+export interface PublishedApp {
+  slug: string;
+  title: string;
+  description: string;
+  icon: string;
+  category: string;
+  stores: { appStore: string; googlePlay?: string };
+  repoUrl?: string;
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { publishedApps } from "../data/apps";
 import { createWebMcpTools, navigationTargets } from "../webmcp";
 
 function setup() {
@@ -46,5 +47,17 @@ describe("createWebMcpTools", () => {
 
     expect(JSON.parse(await run("list_projects"))).toEqual([{ repo: "example" }]);
     expect(deps.fetchProjects).toHaveBeenCalledWith(expect.any(AbortSignal));
+  });
+
+  it("lists published apps with absolute store urls and no local asset paths", async () => {
+    const { run } = setup();
+
+    const apps = JSON.parse(await run("list_apps"));
+
+    expect(apps).toHaveLength(publishedApps.length);
+    for (const app of apps) {
+      expect(app.stores.appStore).toMatch(/^https:\/\/apps\.apple\.com\//);
+      expect(app).not.toHaveProperty("icon");
+    }
   });
 });

@@ -1,3 +1,4 @@
+import { publishedApps } from "@lib/data/apps";
 import { experience } from "@lib/data/experience";
 import { profile } from "@lib/data/profile";
 
@@ -48,4 +49,20 @@ export function buildPersonSchema(): Record<string, unknown> {
     })),
     sameAs: [profile.socials.linkedin, profile.socials.github],
   };
+}
+
+/** One SoftwareApplication per published app, so search engines can link the listings to me. */
+export function buildAppsSchema(): Record<string, unknown>[] {
+  return publishedApps.map((app) => ({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: app.title,
+    description: app.description,
+    applicationCategory: app.category,
+    operatingSystem: app.stores.googlePlay ? "iOS, Android" : "iOS",
+    url: app.stores.appStore,
+    installUrl: [app.stores.appStore, app.stores.googlePlay].filter(Boolean),
+    author: { "@type": "Person", name: profile.name, url: SITE_URL },
+    offers: { "@type": "Offer", price: 0, priceCurrency: "EUR" },
+  }));
 }
